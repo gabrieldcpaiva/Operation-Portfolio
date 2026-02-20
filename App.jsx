@@ -298,171 +298,175 @@ const App = () => {
         </div>
       </nav>
 
-      {/* --- HERO --- */}
-      <header className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-8 md:px-6 -translate-y-12 shrink-0 md:snap-align-none snap-align-start snap-section">
-        <div className="z-10 space-y-8 md:space-y-12 w-full">
-          <div className={`transition-all duration-[3s] ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
-            <h1 className="text-5xl sm:text-7xl md:text-[8rem] font-light italic leading-none tracking-tighter text-white/80 select-none mix-blend-overlay drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">Gabriel Paiva</h1>
+      {/* --- CONTENT WRAPPER: BECOMES SNAP CONTAINER ON MOBILE --- */}
+      <div className="w-full md:block mobile-global-snap-wrapper">
+        {/* --- HERO --- */}
+        <header className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-8 md:px-6 -translate-y-12 shrink-0 md:snap-align-none snap-align-start snap-section">
+          <div className="z-10 space-y-8 md:space-y-12 w-full">
+            <div className={`transition-all duration-[3s] ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
+              <h1 className="text-5xl sm:text-7xl md:text-[8rem] font-light italic leading-none tracking-tighter text-white/80 select-none mix-blend-overlay drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">Gabriel Paiva</h1>
+            </div>
+            <div className={`mt-2 transition-all duration-[3s] delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <div className="space-y-4">
+                <p className="text-[11px] md:text-sm tracking-[0.8em] uppercase text-[#c4a67a] font-black opacity-90" style={{ fontFamily: '"Playfair Display", serif' }}>
+                  Archetype AI // Myths Cannot Be Framed, Only Created
+                </p>
+              </div>
+            </div>
           </div>
-          <div className={`mt-2 transition-all duration-[3s] delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <div className="space-y-4">
-              <p className="text-[11px] md:text-sm tracking-[0.8em] uppercase text-[#c4a67a] font-black opacity-90" style={{ fontFamily: '"Playfair Display", serif' }}>
-                Archetype AI // Myths Cannot Be Framed, Only Created
+
+          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-8 opacity-20 cursor-pointer group" onClick={() => document.getElementById('work').scrollIntoView({ behavior: 'smooth' })}>
+            <span className="text-[8px] uppercase tracking-[1.5em] text-[#c4a67a]">Explore</span>
+            <div className="w-[1px] h-32 bg-gradient-to-b from-[#c4a67a] via-[#c4a67a]/40 to-transparent"></div>
+          </div>
+        </header>
+
+        {/* --- GALLERY SECTIONS --- */}
+        <main id="work" className="relative z-10 space-y-0 md:space-y-96 flex flex-col @media(max-width:768px){snap-container} group-override-mobile-snap">
+          {/* On mobile, this main block acts as the continuous snap container for all generated child sections */}
+          {Object.entries(groupedArtifacts).map(([category, items]) => (
+            <section key={category} className="fade-in-section md:snap-none md:h-auto md:block flex flex-col items-center justify-center w-full">
+              <div className="px-8 md:px-16 mb-8 md:mb-32 hidden md:block">
+                <h2 className="text-4xl md:text-6xl font-light italic text-white/40 tracking-tighter" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
+                  {category}
+                </h2>
+                <div className="w-12 h-[1px] bg-[#c4a67a]/40 mt-6"></div>
+              </div>
+              <CategoryCarousel category={category} items={items} />
+            </section>
+          ))}
+        </main>
+
+        {/* --- INQUIRIES --- */}
+        <section id="inquiries" className="relative z-10 py-32 md:py-64 px-8 md:px-12 flex flex-col items-center snap-section md:h-auto">
+          <div className="max-w-2xl w-full relative">
+            <div className={`absolute inset-[-100px] bg-[#c4a67a]/30 blur-[120px] rounded-full transition-all duration-[2s] pointer-events-none ${formActive ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}></div>
+            <div className="relative z-10 space-y-16 md:space-y-24">
+              <div className="space-y-6 text-center">
+                <h2 className="text-5xl sm:text-6xl md:text-8xl font-light italic tracking-tighter text-[#c4a67a] leading-none text-white/90 drop-shadow-2xl">Inquiries</h2>
+                <div className="w-24 md:w-32 h-[1px] bg-[#c4a67a]/40 mx-auto"></div>
+                <p className="text-[10px] md:text-[11px] text-white uppercase tracking-[0.5em] md:tracking-[0.7em] font-black mt-8 italic bg-black/40 inline-block px-6 md:px-8 py-2 border border-white/5">Handcrafted aesthetics. Zero fluff.</p>
+              </div>
+
+              <form action="mailto:gabrieldcpaiva@gmail.com" method="post" encType="text/plain" className="space-y-8 md:space-y-12 bg-transparent p-10 md:p-24 text-left relative"
+                onFocus={() => setFormActive(true)}
+                onBlur={() => setFormActive(false)}>
+                <div className="absolute inset-0 bg-black/40 backdrop-blur-2xl rounded-[3rem] -z-10"></div>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#c4a67a]/20 to-transparent"></div>
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#c4a67a]/20 to-transparent"></div>
+
+                <div className="space-y-4">
+                  <label className="text-xs uppercase tracking-[0.6em] text-white/40 font-bold">Name</label>
+                  <input type="text" name="name" placeholder="Your Name" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] placeholder:text-white/10" />
+                </div>
+                <div className="space-y-4">
+                  <label className="text-xs uppercase tracking-[0.6em] text-white/40 font-bold">Email</label>
+                  <input type="email" name="email" placeholder="Your Email" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] placeholder:text-white/10" />
+                </div>
+                <div className="space-y-4">
+                  <label className="text-xs uppercase tracking-[0.6em] text-white/40 font-bold">What is your wildest idea?</label>
+                  <textarea name="message" placeholder="Tell me everything..." rows="5" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] resize-none placeholder:text-white/10"></textarea>
+                </div>
+                <button type="submit" className="w-full py-6 mt-12 border border-[#c4a67a]/30 text-[#c4a67a] font-bold uppercase text-xs tracking-[0.6em] hover:bg-white hover:text-black hover:border-white transition-all duration-700 bg-transparent rounded-full shadow-2xl">Send It</button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        {/* --- THE TODDLER TOOLKIT: PREMIUM SUPPLY CARD --- */}
+        <section id="crate" className="w-full max-w-7xl mx-auto px-8 md:px-12 py-24 md:py-32 flex justify-center items-center relative z-10 snap-section md:h-auto">
+
+          {/* Glow behind the card */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-[#c4a67a]/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+
+          {/* The Card Container */}
+          <div className="relative w-full max-w-4xl bg-[#0a0a0a] rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.9)] flex flex-col md:flex-row overflow-hidden group transition-all duration-700 hover:shadow-[0_40px_80px_rgba(196,166,122,0.1)] hover:-translate-y-2">
+
+            {/* Left: Image (Thumbnail size) */}
+            <div className="relative w-full md:w-2/5 aspect-[4/5] md:aspect-auto bg-black overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+              <img
+                src="/The_Toddler_Toolkit/cover.png"
+                alt="The Toddler Toolkit - Cover"
+                className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+              />
+              {/* Cheeky overlay tag */}
+              <div className="absolute top-4 left-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 border border-white/10">
+                <span className="text-[9px] uppercase tracking-[0.2em] text-[#c4a67a] font-bold">V1.0 Exclusive</span>
+              </div>
+            </div>
+
+            {/* Right: Content */}
+            <div className="w-full md:w-3/5 p-8 md:p-20 flex flex-col justify-center relative">
+
+              {/* Header */}
+              <div className="mb-6">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-2 block mt-4 md:mt-0">Supply Drop</span>
+                <h2 className="text-3xl md:text-4xl font-light italic text-white/90 leading-tight" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
+                  The Toddler Toolkit
+                </h2>
+              </div>
+
+              {/* Description */}
+              <p className="text-sm text-zinc-400 font-light leading-relaxed mb-8 pr-4">
+                A definitive collection of <strong>Robotic Motion Blueprints</strong> and <strong>Scene Hierarchies</strong>.
+                Designed for visual architects who demand cinematic precision without the guesswork.
+                Stop playing with prompts; start engineering scenes.
               </p>
-            </div>
-          </div>
-        </div>
 
-        <div className="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-8 opacity-20 cursor-pointer group" onClick={() => document.getElementById('work').scrollIntoView({ behavior: 'smooth' })}>
-          <span className="text-[8px] uppercase tracking-[1.5em] text-[#c4a67a]">Explore</span>
-          <div className="w-[1px] h-32 bg-gradient-to-b from-[#c4a67a] via-[#c4a67a]/40 to-transparent"></div>
-        </div>
-      </header>
+              {/* List of Features (Compact) */}
+              <ul className="mb-10 space-y-2 text-[11px] uppercase tracking-[0.15em] text-zinc-500 font-medium">
+                <li className="flex items-center gap-2">
+                  <span className="w-1 h-1 bg-[#c4a67a] rounded-full"></span>
+                  <span>8K Lighting Rigs</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1 h-1 bg-[#c4a67a] rounded-full"></span>
+                  <span>Motion Physics Logic</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1 h-1 bg-[#c4a67a] rounded-full"></span>
+                  <span>Identity Consistency</span>
+                </li>
+              </ul>
 
-      {/* --- GALLERY SECTIONS --- */}
-      <main id="work" className="relative z-10 space-y-0 md:space-y-96">
-        {Object.entries(groupedArtifacts).map(([category, items]) => (
-          <section key={category} className="fade-in-section snap-section md:h-auto md:block flex items-center justify-center w-full">
-            <div className="px-8 md:px-16 mb-8 md:mb-32 hidden md:block">
-              <h2 className="text-4xl md:text-6xl font-light italic text-white/40 tracking-tighter" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
-                {category}
-              </h2>
-              <div className="w-12 h-[1px] bg-[#c4a67a]/40 mt-6"></div>
-            </div>
-            <CategoryCarousel category={category} items={items} />
-          </section>
-        ))}
-      </main>
-
-      {/* --- INQUIRIES --- */}
-      <section id="inquiries" className="relative z-10 py-32 md:py-64 px-8 md:px-12 flex flex-col items-center snap-section md:h-auto">
-        <div className="max-w-2xl w-full relative">
-          <div className={`absolute inset-[-100px] bg-[#c4a67a]/30 blur-[120px] rounded-full transition-all duration-[2s] pointer-events-none ${formActive ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}></div>
-          <div className="relative z-10 space-y-16 md:space-y-24">
-            <div className="space-y-6 text-center">
-              <h2 className="text-5xl sm:text-6xl md:text-8xl font-light italic tracking-tighter text-[#c4a67a] leading-none text-white/90 drop-shadow-2xl">Inquiries</h2>
-              <div className="w-24 md:w-32 h-[1px] bg-[#c4a67a]/40 mx-auto"></div>
-              <p className="text-[10px] md:text-[11px] text-white uppercase tracking-[0.5em] md:tracking-[0.7em] font-black mt-8 italic bg-black/40 inline-block px-6 md:px-8 py-2 border border-white/5">Handcrafted aesthetics. Zero fluff.</p>
-            </div>
-
-            <form action="mailto:gabrieldcpaiva@gmail.com" method="post" encType="text/plain" className="space-y-8 md:space-y-12 bg-transparent p-10 md:p-24 text-left relative"
-              onFocus={() => setFormActive(true)}
-              onBlur={() => setFormActive(false)}>
-              <div className="absolute inset-0 bg-black/40 backdrop-blur-2xl rounded-[3rem] -z-10"></div>
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#c4a67a]/20 to-transparent"></div>
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#c4a67a]/20 to-transparent"></div>
-
-              <div className="space-y-4">
-                <label className="text-xs uppercase tracking-[0.6em] text-white/40 font-bold">Name</label>
-                <input type="text" name="name" placeholder="Your Name" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] placeholder:text-white/10" />
+              {/* Action Area */}
+              <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 mt-10 md:mt-auto border-t border-white/5 md:border-none pt-8 md:pt-0">
+                <a
+                  href="https://flowybiz.gumroad.com/l/the_toddler_kit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full md:w-auto text-center border border-[#c4a67a]/40 text-[#c4a67a] hover:bg-[#c4a67a] hover:text-black rounded-full px-10 py-5 text-[12px] md:text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500"
+                >
+                  Get It
+                </a>
+                <span className="text-[11px] md:text-[9px] text-zinc-600 font-mono tracking-widest text-center w-full md:w-auto">$XX // LIMITED</span>
               </div>
-              <div className="space-y-4">
-                <label className="text-xs uppercase tracking-[0.6em] text-white/40 font-bold">Email</label>
-                <input type="email" name="email" placeholder="Your Email" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] placeholder:text-white/10" />
-              </div>
-              <div className="space-y-4">
-                <label className="text-xs uppercase tracking-[0.6em] text-white/40 font-bold">What is your wildest idea?</label>
-                <textarea name="message" placeholder="Tell me everything..." rows="5" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] resize-none placeholder:text-white/10"></textarea>
-              </div>
-              <button type="submit" className="w-full py-6 mt-12 border border-[#c4a67a]/30 text-[#c4a67a] font-bold uppercase text-xs tracking-[0.6em] hover:bg-white hover:text-black hover:border-white transition-all duration-700 bg-transparent rounded-full shadow-2xl">Send It</button>
-            </form>
-          </div>
-        </div>
-      </section>
 
-      {/* --- THE TODDLER TOOLKIT: PREMIUM SUPPLY CARD --- */}
-      <section id="crate" className="w-full max-w-7xl mx-auto px-8 md:px-12 py-24 md:py-32 flex justify-center items-center relative z-10 snap-section md:h-auto">
-
-        {/* Glow behind the card */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-[#c4a67a]/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
-
-        {/* The Card Container */}
-        <div className="relative w-full max-w-4xl bg-[#0a0a0a] rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.9)] flex flex-col md:flex-row overflow-hidden group transition-all duration-700 hover:shadow-[0_40px_80px_rgba(196,166,122,0.1)] hover:-translate-y-2">
-
-          {/* Left: Image (Thumbnail size) */}
-          <div className="relative w-full md:w-2/5 aspect-[4/5] md:aspect-auto bg-black overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-            <img
-              src="/The_Toddler_Toolkit/cover.png"
-              alt="The Toddler Toolkit - Cover"
-              className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-            />
-            {/* Cheeky overlay tag */}
-            <div className="absolute top-4 left-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 border border-white/10">
-              <span className="text-[9px] uppercase tracking-[0.2em] text-[#c4a67a] font-bold">V1.0 Exclusive</span>
             </div>
           </div>
+        </section>
 
-          {/* Right: Content */}
-          <div className="w-full md:w-3/5 p-8 md:p-20 flex flex-col justify-center relative">
 
-            {/* Header */}
-            <div className="mb-6">
-              <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-2 block mt-4 md:mt-0">Supply Drop</span>
-              <h2 className="text-3xl md:text-4xl font-light italic text-white/90 leading-tight" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
-                The Toddler Toolkit
-              </h2>
-            </div>
-
-            {/* Description */}
-            <p className="text-sm text-zinc-400 font-light leading-relaxed mb-8 pr-4">
-              A definitive collection of <strong>Robotic Motion Blueprints</strong> and <strong>Scene Hierarchies</strong>.
-              Designed for visual architects who demand cinematic precision without the guesswork.
-              Stop playing with prompts; start engineering scenes.
-            </p>
-
-            {/* List of Features (Compact) */}
-            <ul className="mb-10 space-y-2 text-[11px] uppercase tracking-[0.15em] text-zinc-500 font-medium">
-              <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-[#c4a67a] rounded-full"></span>
-                <span>8K Lighting Rigs</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-[#c4a67a] rounded-full"></span>
-                <span>Motion Physics Logic</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-[#c4a67a] rounded-full"></span>
-                <span>Identity Consistency</span>
-              </li>
-            </ul>
-
-            {/* Action Area */}
-            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 mt-10 md:mt-auto border-t border-white/5 md:border-none pt-8 md:pt-0">
-              <a
-                href="https://flowybiz.gumroad.com/l/the_toddler_kit"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full md:w-auto text-center border border-[#c4a67a]/40 text-[#c4a67a] hover:bg-[#c4a67a] hover:text-black rounded-full px-10 py-5 text-[12px] md:text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500"
-              >
-                Get It
-              </a>
-              <span className="text-[11px] md:text-[9px] text-zinc-600 font-mono tracking-widest text-center w-full md:w-auto">$XX // LIMITED</span>
-            </div>
-
+        {/* --- FOOTER --- */}
+        <footer className="relative z-10 py-48 px-12 border-t border-white/5 flex flex-col items-center gap-24 snap-section md:h-auto justify-center">
+          <div className="w-32 h-[1px] bg-white opacity-20"></div>
+          <div className="flex flex-wrap justify-center gap-16 text-zinc-600">
+            <a href="https://x.com/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Twitter size={22} strokeWidth={1} /></a>
+            <a href="https://medium.com/@gabrielpaiva_53557" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700 font-bold text-[10px] uppercase tracking-widest border-b border-transparent hover:border-white">Medium</a>
+            <a href="https://www.instagram.com/gabriel_in_scotland?igsh=MThpNmNuOWhsamF5aQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Instagram size={22} strokeWidth={1} /></a>
+            <a href="https://flowybiz.gumroad.com/l/the_toddler_kit" target="_blank" rel="noopener noreferrer" id="deploy-control" className="hover:text-[#c4a67a] transition-all transform hover:-translate-y-2 duration-700 flex items-center gap-4 group">
+              <ShoppingBag size={20} strokeWidth={1} />
+              <span className="text-[9px] uppercase tracking-[0.4em] font-black italic">The Crate</span>
+            </a>
+            <a href="https://www.linkedin.com/in/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Linkedin size={22} strokeWidth={1} /></a>
+            <a href="mailto:gabrieldcpaiva@gmail.com" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Mail size={22} strokeWidth={1} /></a>
           </div>
-        </div>
-      </section>
-
-
-      {/* --- FOOTER --- */}
-      <footer className="relative z-10 py-48 px-12 border-t border-white/5 flex flex-col items-center gap-24 snap-section md:h-auto justify-center">
-        <div className="w-32 h-[1px] bg-white opacity-20"></div>
-        <div className="flex flex-wrap justify-center gap-16 text-zinc-600">
-          <a href="https://x.com/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Twitter size={22} strokeWidth={1} /></a>
-          <a href="https://medium.com/@gabrielpaiva_53557" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700 font-bold text-[10px] uppercase tracking-widest border-b border-transparent hover:border-white">Medium</a>
-          <a href="https://www.instagram.com/gabriel_in_scotland?igsh=MThpNmNuOWhsamF5aQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Instagram size={22} strokeWidth={1} /></a>
-          <a href="https://flowybiz.gumroad.com/l/the_toddler_kit" target="_blank" rel="noopener noreferrer" id="deploy-control" className="hover:text-[#c4a67a] transition-all transform hover:-translate-y-2 duration-700 flex items-center gap-4 group">
-            <ShoppingBag size={20} strokeWidth={1} />
-            <span className="text-[9px] uppercase tracking-[0.4em] font-black italic">The Crate</span>
-          </a>
-          <a href="https://www.linkedin.com/in/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Linkedin size={22} strokeWidth={1} /></a>
-          <a href="mailto:gabrieldcpaiva@gmail.com" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Mail size={22} strokeWidth={1} /></a>
-        </div>
-        <div className="text-[10px] uppercase tracking-[2.5em] text-zinc-800 font-black pl-[2.5em]">
-          © Gabriel Paiva 2026 · <span className="text-zinc-700 font-medium">Handcrafted</span>
-        </div>
-      </footer>
+          <div className="text-[10px] uppercase tracking-[2.5em] text-zinc-800 font-black pl-[2.5em]">
+            © Gabriel Paiva 2026 · <span className="text-zinc-700 font-medium">Handcrafted</span>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 };
