@@ -34,15 +34,16 @@ const CategoryCarousel = ({ category, items }) => {
   const currentItem = items[currentIndex];
 
   return (
-    <div className="w-full mb-48">
+    <div className="w-full mb-24 md:mb-48">
       {/* Header */}
-      <div className="px-6 md:px-16 mb-16 relative">
+      <div className="px-8 md:px-16 mb-12 md:mb-16 relative">
         <div className="absolute top-0 left-0 w-full h-[200%] bg-gradient-to-b from-[#050505] to-transparent -z-10 opacity-60"></div>
-        <h2 className="text-4xl md:text-7xl font-light italic tracking-tighter text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] leading-none">{category}</h2>
-        <div className="w-24 h-[1px] bg-[#c4a67a] mt-8 opacity-40"></div>
+        <h2 className="text-4xl md:text-7xl font-light italic tracking-tighter text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] leading-none break-words">{category}</h2>
+        <div className="w-16 md:w-24 h-[1px] bg-[#c4a67a] mt-6 md:mt-8 opacity-40"></div>
       </div>
 
-      <div className="relative w-full h-[60vh] md:h-[80vh] group flex items-center justify-center">
+      {/* --- DESKTOP CAROUSEL (HIDDEN ON MOBILE) --- */}
+      <div className="hidden md:flex relative w-full h-[80vh] group items-center justify-center">
 
         {/* Navigation Arrows (Split & Floating) */}
         <button
@@ -61,30 +62,17 @@ const CategoryCarousel = ({ category, items }) => {
 
         {/* Main Image (Floating in Space with Lift & Shadow) */}
         <div
-          className="relative z-10 max-h-full max-w-[90%] md:max-w-[80%] group/image"
-
+          className="relative z-10 max-h-full max-w-[80%] group/image"
         >
-          {currentItem.orientation === 'portrait' ? (
-            <div className="artifact-lift animate-fade-in">
-              <img
-                key={currentItem.id}
-                src={currentItem.url}
-                alt={currentItem.title}
-                className="w-auto h-auto max-h-[60vh] md:max-h-[70vh] object-contain transition-all duration-700 ease-out opacity-0"
-                onLoad={(e) => e.target.classList.remove('opacity-0')}
-              />
-            </div>
-          ) : (
-            <div className="artifact-lift animate-fade-in">
-              <img
-                key={currentItem.id}
-                src={currentItem.url}
-                alt={currentItem.title}
-                className="w-auto h-auto max-h-[70vh] md:max-h-[80vh] object-contain transition-all duration-700 ease-out opacity-0"
-                onLoad={(e) => e.target.classList.remove('opacity-0')}
-              />
-            </div>
-          )}
+          <div className="artifact-lift animate-fade-in">
+            <img
+              key={currentItem.id}
+              src={currentItem.url}
+              alt={currentItem.title}
+              className={`w-auto h-auto object-contain transition-all duration-700 ease-out opacity-0 ${currentItem.orientation === 'portrait' ? 'max-h-[70vh]' : 'max-h-[80vh]'}`}
+              onLoad={(e) => e.target.classList.remove('opacity-0')}
+            />
+          </div>
 
           {/* Floating Info (Bottom Left of Image) */}
           <div className={`absolute ${currentItem.orientation === 'portrait' ? '-bottom-12 ml-4' : '-bottom-24'} left-0 text-left pointer-events-none transition-all duration-700 opacity-80 group-hover/image:opacity-100 group-hover/image:-translate-y-4`}>
@@ -92,10 +80,34 @@ const CategoryCarousel = ({ category, items }) => {
               <span className="text-[10px] text-[#c4a67a] uppercase tracking-[0.4em] font-bold mb-1 block drop-shadow-md">
                 {items.length > 1 ? `${currentIndex + 1} / ${items.length}` : 'Singleton'}
               </span>
-              <h3 className="text-3xl md:text-5xl font-light italic text-[#f2f2f2] drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)] leading-tight">{currentItem.title}</h3>
+              <h3 className="text-5xl font-light italic text-[#f2f2f2] drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)] leading-tight">{currentItem.title}</h3>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* --- MOBILE VERTICAL COLUMN (HIDDEN ON DESKTOP) --- */}
+      <div className="md:hidden flex flex-col w-full space-y-24 px-8 pb-16">
+        {items.map((item, index) => (
+          <div key={item.id} className="relative w-full flex flex-col items-center">
+            <div className="w-full flex justify-center artifact-lift pointer-events-none">
+              <img
+                src={item.url}
+                alt={item.title}
+                className="w-full max-w-full h-auto object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
+                loading="lazy"
+              />
+            </div>
+
+            {/* Tag / Title Below Image */}
+            <div className="w-full text-left mt-8">
+              <span className="text-[10px] text-[#c4a67a] uppercase tracking-[0.4em] font-bold mb-2 block drop-shadow-md">
+                {items.length > 1 ? `${index + 1} / ${items.length}` : 'Singleton'}
+              </span>
+              <h3 className="text-3xl font-light italic text-[#f2f2f2] leading-tight drop-shadow-md">{item.title}</h3>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -285,10 +297,10 @@ const App = () => {
       </nav>
 
       {/* --- HERO --- */}
-      <header className="relative h-screen flex flex-col items-center justify-center text-center px-6 -translate-y-12">
-        <div className="z-10 space-y-12">
+      <header className="relative h-screen flex flex-col items-center justify-center text-center px-8 md:px-6 -translate-y-12">
+        <div className="z-10 space-y-8 md:space-y-12 w-full">
           <div className={`transition-all duration-[3s] ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
-            <h1 className="text-6xl md:text-[8rem] font-light italic leading-none tracking-tighter text-white/80 select-none mix-blend-overlay drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">Gabriel Paiva</h1>
+            <h1 className="text-5xl sm:text-7xl md:text-[8rem] font-light italic leading-none tracking-tighter text-white/80 select-none mix-blend-overlay drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">Gabriel Paiva</h1>
           </div>
           <div className={`mt-2 transition-all duration-[3s] delay-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="space-y-4">
@@ -309,29 +321,23 @@ const App = () => {
       <main id="work" className="relative z-10 space-y-96">
         {Object.entries(groupedArtifacts).map(([category, items]) => (
           <section key={category} className="fade-in-section">
-            <div className="px-8 md:px-16 mb-32">
-              <h2 className="text-4xl md:text-6xl font-light italic text-white/40 tracking-tighter" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
-                {category}
-              </h2>
-              <div className="w-12 h-[1px] bg-[#c4a67a]/40 mt-6"></div>
-            </div>
             <CategoryCarousel category={category} items={items} />
           </section>
         ))}
       </main>
 
       {/* --- INQUIRIES --- */}
-      <section id="inquiries" className="relative z-10 py-64 px-8 md:px-12 flex flex-col items-center">
+      <section id="inquiries" className="relative z-10 py-32 md:py-64 px-8 md:px-12 flex flex-col items-center">
         <div className="max-w-2xl w-full relative">
           <div className={`absolute inset-[-100px] bg-[#c4a67a]/30 blur-[120px] rounded-full transition-all duration-[2s] pointer-events-none ${formActive ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}></div>
-          <div className="relative z-10 space-y-24">
+          <div className="relative z-10 space-y-16 md:space-y-24">
             <div className="space-y-6 text-center">
-              <h2 className="text-7xl md:text-8xl font-light italic tracking-tighter text-[#c4a67a] leading-none text-white/90 drop-shadow-2xl">Inquiries</h2>
-              <div className="w-32 h-[1px] bg-[#c4a67a]/40 mx-auto"></div>
-              <p className="text-[11px] text-white uppercase tracking-[0.7em] font-black mt-8 italic bg-black/40 inline-block px-8 py-2 border border-white/5">Handcrafted aesthetics. Zero fluff.</p>
+              <h2 className="text-5xl sm:text-6xl md:text-8xl font-light italic tracking-tighter text-[#c4a67a] leading-none text-white/90 drop-shadow-2xl">Inquiries</h2>
+              <div className="w-24 md:w-32 h-[1px] bg-[#c4a67a]/40 mx-auto"></div>
+              <p className="text-[10px] md:text-[11px] text-white uppercase tracking-[0.5em] md:tracking-[0.7em] font-black mt-8 italic bg-black/40 inline-block px-6 md:px-8 py-2 border border-white/5">Handcrafted aesthetics. Zero fluff.</p>
             </div>
 
-            <form action="mailto:gabrieldcpaiva@gmail.com" method="post" encType="text/plain" className="space-y-12 bg-transparent p-12 md:p-24 text-left relative"
+            <form action="mailto:gabrieldcpaiva@gmail.com" method="post" encType="text/plain" className="space-y-8 md:space-y-12 bg-transparent p-10 md:p-24 text-left relative"
               onFocus={() => setFormActive(true)}
               onBlur={() => setFormActive(false)}>
               <div className="absolute inset-0 bg-black/40 backdrop-blur-2xl rounded-[3rem] -z-10"></div>
@@ -357,7 +363,7 @@ const App = () => {
       </section>
 
       {/* --- THE TODDLER TOOLKIT: PREMIUM SUPPLY CARD --- */}
-      <section id="crate" className="w-full max-w-7xl mx-auto px-6 md:px-12 py-32 flex justify-center items-center relative z-10">
+      <section id="crate" className="w-full max-w-7xl mx-auto px-8 md:px-12 py-24 md:py-32 flex justify-center items-center relative z-10">
 
         {/* Glow behind the card */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-[#c4a67a]/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
@@ -380,11 +386,11 @@ const App = () => {
           </div>
 
           {/* Right: Content */}
-          <div className="w-full md:w-3/5 p-12 md:p-20 flex flex-col justify-center relative">
+          <div className="w-full md:w-3/5 p-8 md:p-20 flex flex-col justify-center relative">
 
             {/* Header */}
             <div className="mb-6">
-              <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-2 block">Supply Drop</span>
+              <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-2 block mt-4 md:mt-0">Supply Drop</span>
               <h2 className="text-3xl md:text-4xl font-light italic text-white/90 leading-tight" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
                 The Toddler Toolkit
               </h2>
@@ -414,16 +420,16 @@ const App = () => {
             </ul>
 
             {/* Action Area */}
-            <div className="flex items-center gap-8 mt-auto">
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 mt-10 md:mt-auto border-t border-white/5 md:border-none pt-8 md:pt-0">
               <a
                 href="https://flowybiz.gumroad.com/l/the_toddler_kit"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-[#c4a67a]/40 text-[#c4a67a] hover:bg-[#c4a67a] hover:text-black rounded-full px-10 py-4 text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500"
+                className="w-full md:w-auto text-center border border-[#c4a67a]/40 text-[#c4a67a] hover:bg-[#c4a67a] hover:text-black rounded-full px-10 py-5 text-[12px] md:text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500"
               >
                 Get It
               </a>
-              <span className="text-[9px] text-zinc-600 font-mono tracking-widest">$XX // LIMITED</span>
+              <span className="text-[11px] md:text-[9px] text-zinc-600 font-mono tracking-widest text-center w-full md:w-auto">$XX // LIMITED</span>
             </div>
 
           </div>

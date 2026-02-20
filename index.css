@@ -119,6 +119,25 @@ section {
     padding-bottom: 10rem;
 }
 
+/* Mobile Responsiveness Rules */
+@media (max-width: 768px) {
+    section {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    .cursor-backlight {
+        display: none;
+        /* Hide custom cursor on mobile touch screens */
+    }
+
+    .artifact-lift:hover {
+        transform: none;
+        /* Disable extreme hover lift on mobile to avoid layout shifts on tap */
+        filter: none;
+    }
+}
+
 /* Custom Animations */
 @keyframes fadeIn {
     from {
