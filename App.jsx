@@ -86,26 +86,28 @@ const CategoryCarousel = ({ category, items }) => {
         </div>
       </div>
 
-      {/* --- MOBILE VERTICAL COLUMN (HIDDEN ON DESKTOP) --- */}
-      <div className="md:hidden flex flex-col w-full space-y-24 px-8 pb-16">
+      {/* --- MOBILE VERTICAL SNAP (HIDDEN ON DESKTOP) --- */}
+      <div className="md:hidden snap-container">
         {items.map((item, index) => (
-          <div key={item.id} className="relative w-full flex flex-col items-center">
-            <div className="w-full flex justify-center artifact-lift pointer-events-none">
+          <div key={item.id} className="snap-section w-full px-6 flex flex-col justify-center items-center">
+
+            <div className="w-full flex justify-center mb-12 pointer-events-none">
               <img
                 src={item.url}
                 alt={item.title}
-                className="w-full max-w-full h-auto object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
+                className="snap-image drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
                 loading="lazy"
               />
             </div>
 
             {/* Tag / Title Below Image */}
-            <div className="w-full text-left mt-8">
+            <div className="w-full text-center mt-auto pb-12">
               <span className="text-[10px] text-[#c4a67a] uppercase tracking-[0.4em] font-bold mb-2 block drop-shadow-md">
                 {items.length > 1 ? `${index + 1} / ${items.length}` : 'Singleton'}
               </span>
               <h3 className="text-3xl font-light italic text-[#f2f2f2] leading-tight drop-shadow-md">{item.title}</h3>
             </div>
+
           </div>
         ))}
       </div>
@@ -297,7 +299,7 @@ const App = () => {
       </nav>
 
       {/* --- HERO --- */}
-      <header className="relative h-screen flex flex-col items-center justify-center text-center px-8 md:px-6 -translate-y-12">
+      <header className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-8 md:px-6 -translate-y-12 shrink-0 md:snap-align-none snap-align-start snap-section">
         <div className="z-10 space-y-8 md:space-y-12 w-full">
           <div className={`transition-all duration-[3s] ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}>
             <h1 className="text-5xl sm:text-7xl md:text-[8rem] font-light italic leading-none tracking-tighter text-white/80 select-none mix-blend-overlay drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">Gabriel Paiva</h1>
@@ -318,16 +320,22 @@ const App = () => {
       </header>
 
       {/* --- GALLERY SECTIONS --- */}
-      <main id="work" className="relative z-10 space-y-96">
+      <main id="work" className="relative z-10 space-y-0 md:space-y-96">
         {Object.entries(groupedArtifacts).map(([category, items]) => (
-          <section key={category} className="fade-in-section">
+          <section key={category} className="fade-in-section snap-section md:h-auto md:block flex items-center justify-center w-full">
+            <div className="px-8 md:px-16 mb-8 md:mb-32 hidden md:block">
+              <h2 className="text-4xl md:text-6xl font-light italic text-white/40 tracking-tighter" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
+                {category}
+              </h2>
+              <div className="w-12 h-[1px] bg-[#c4a67a]/40 mt-6"></div>
+            </div>
             <CategoryCarousel category={category} items={items} />
           </section>
         ))}
       </main>
 
       {/* --- INQUIRIES --- */}
-      <section id="inquiries" className="relative z-10 py-32 md:py-64 px-8 md:px-12 flex flex-col items-center">
+      <section id="inquiries" className="relative z-10 py-32 md:py-64 px-8 md:px-12 flex flex-col items-center snap-section md:h-auto">
         <div className="max-w-2xl w-full relative">
           <div className={`absolute inset-[-100px] bg-[#c4a67a]/30 blur-[120px] rounded-full transition-all duration-[2s] pointer-events-none ${formActive ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}></div>
           <div className="relative z-10 space-y-16 md:space-y-24">
@@ -363,7 +371,7 @@ const App = () => {
       </section>
 
       {/* --- THE TODDLER TOOLKIT: PREMIUM SUPPLY CARD --- */}
-      <section id="crate" className="w-full max-w-7xl mx-auto px-8 md:px-12 py-24 md:py-32 flex justify-center items-center relative z-10">
+      <section id="crate" className="w-full max-w-7xl mx-auto px-8 md:px-12 py-24 md:py-32 flex justify-center items-center relative z-10 snap-section md:h-auto">
 
         {/* Glow behind the card */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-[#c4a67a]/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
@@ -438,7 +446,7 @@ const App = () => {
 
 
       {/* --- FOOTER --- */}
-      <footer className="relative z-10 py-48 px-12 border-t border-white/5 flex flex-col items-center gap-24">
+      <footer className="relative z-10 py-48 px-12 border-t border-white/5 flex flex-col items-center gap-24 snap-section md:h-auto justify-center">
         <div className="w-32 h-[1px] bg-white opacity-20"></div>
         <div className="flex flex-wrap justify-center gap-16 text-zinc-600">
           <a href="https://x.com/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Twitter size={22} strokeWidth={1} /></a>

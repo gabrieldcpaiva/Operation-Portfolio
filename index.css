@@ -120,10 +120,50 @@ section {
 }
 
 /* Mobile Responsiveness Rules */
+/* Mobile Responsiveness Rules */
 @media (max-width: 768px) {
+
+    /* Vertical Snap Container */
+    body {
+        overscroll-behavior-y: none;
+        /* Prevent bounce on mobile */
+    }
+
+    .snap-container {
+        height: 100dvh;
+        /* Dynamic viewport height */
+        width: 100vw;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+    }
+
+    /* Individual Snap Elements */
+    .snap-section {
+        height: 100dvh;
+        width: 100vw;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    /* Padding adjustments for desktop-designed sections reused on mobile */
     section {
         padding-top: 5rem;
         padding-bottom: 5rem;
+    }
+
+    section.snap-section {
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
     .cursor-backlight {
