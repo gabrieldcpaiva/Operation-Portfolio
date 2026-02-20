@@ -87,9 +87,9 @@ const CategoryCarousel = ({ category, items }) => {
       </div>
 
       {/* --- MOBILE VERTICAL SNAP (HIDDEN ON DESKTOP) --- */}
-      <div className="md:hidden snap-container">
+      <div className="md:hidden snap-container group-override-mobile-snap">
         {items.map((item, index) => (
-          <div key={item.id} className="snap-section w-full px-6 flex flex-col justify-center items-center">
+          <div key={item.id} className="snap-section w-full px-6 flex flex-col justify-center items-center bg-[#050505]">
 
             <div className="w-full flex justify-center mb-12 pointer-events-none">
               <img
@@ -101,7 +101,7 @@ const CategoryCarousel = ({ category, items }) => {
             </div>
 
             {/* Tag / Title Below Image */}
-            <div className="w-full text-center mt-auto pb-12">
+            <div className="w-full text-center mt-auto pb-12 bg-[#050505] pt-4">
               <span className="text-[10px] text-[#c4a67a] uppercase tracking-[0.4em] font-bold mb-2 block drop-shadow-md">
                 {items.length > 1 ? `${index + 1} / ${items.length}` : 'Singleton'}
               </span>
@@ -299,7 +299,7 @@ const App = () => {
       </nav>
 
       {/* --- CONTENT WRAPPER: BECOMES SNAP CONTAINER ON MOBILE --- */}
-      <div className="w-full md:block mobile-global-snap-wrapper">
+      <div className="w-full md:block mobile-global-snap-wrapper bg-[#050505] md:bg-transparent">
         {/* --- HERO --- */}
         <header className="relative h-[100dvh] flex flex-col items-center justify-center text-center px-8 md:px-6 -translate-y-12 shrink-0 md:snap-align-none snap-align-start snap-section">
           <div className="z-10 space-y-8 md:space-y-12 w-full">
@@ -322,10 +322,10 @@ const App = () => {
         </header>
 
         {/* --- GALLERY SECTIONS --- */}
-        <main id="work" className="relative z-10 space-y-0 md:space-y-96 flex flex-col @media(max-width:768px){snap-container} group-override-mobile-snap">
+        <main id="work" className="relative z-10 space-y-0 md:space-y-96 flex flex-col @media(max-width:768px){snap-container} group-override-mobile-snap bg-[#050505] md:bg-transparent">
           {/* On mobile, this main block acts as the continuous snap container for all generated child sections */}
           {Object.entries(groupedArtifacts).map(([category, items]) => (
-            <section key={category} className="fade-in-section md:snap-none md:h-auto md:block flex flex-col items-center justify-center w-full">
+            <section key={category} className="fade-in-section md:snap-none md:h-auto md:block flex flex-col items-center justify-center w-full bg-[#050505] md:bg-transparent">
               <div className="px-8 md:px-16 mb-8 md:mb-32 hidden md:block">
                 <h2 className="text-4xl md:text-6xl font-light italic text-white/40 tracking-tighter" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
                   {category}
@@ -338,7 +338,7 @@ const App = () => {
         </main>
 
         {/* --- INQUIRIES --- */}
-        <section id="inquiries" className="relative z-10 py-32 md:py-64 px-8 md:px-12 flex flex-col items-center snap-section md:h-auto">
+        <section id="inquiries" className="relative z-10 py-32 md:py-64 px-8 md:px-12 flex flex-col items-center snap-section md:h-auto bg-[#050505] md:bg-transparent">
           <div className="max-w-2xl w-full relative">
             <div className={`absolute inset-[-100px] bg-[#c4a67a]/30 blur-[120px] rounded-full transition-all duration-[2s] pointer-events-none ${formActive ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}></div>
             <div className="relative z-10 space-y-16 md:space-y-24">
@@ -374,7 +374,7 @@ const App = () => {
         </section>
 
         {/* --- THE TODDLER TOOLKIT: PREMIUM SUPPLY CARD --- */}
-        <section id="crate" className="w-full max-w-7xl mx-auto px-8 md:px-12 py-24 md:py-32 flex justify-center items-center relative z-10 snap-section md:h-auto">
+        <section id="crate" className="w-full max-w-7xl mx-auto px-8 md:px-12 py-24 md:py-32 flex justify-center items-center relative z-10 snap-section md:h-auto bg-[#050505] md:bg-transparent">
 
           {/* Glow behind the card */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-[#c4a67a]/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
@@ -449,7 +449,7 @@ const App = () => {
 
 
         {/* --- FOOTER --- */}
-        <footer className="relative z-10 py-48 px-12 border-t border-white/5 flex flex-col items-center gap-24 snap-section md:h-auto justify-center">
+        <footer className="relative z-10 py-48 px-12 border-t border-white/5 flex flex-col items-center gap-24 snap-section md:h-auto justify-center bg-[#050505] md:bg-transparent">
           <div className="w-32 h-[1px] bg-white opacity-20"></div>
           <div className="flex flex-wrap justify-center gap-16 text-zinc-600">
             <a href="https://x.com/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Twitter size={22} strokeWidth={1} /></a>
