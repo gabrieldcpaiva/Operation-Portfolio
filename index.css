@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Mission 2: Artifact Lift Aesthetic (Ambient) */
+.artifact-lift {
+    position: relative;
+    display: inline-block;
+    margin: auto;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
+    z-index: 10;
+}
+
+.artifact-lift:hover {
+    transform: scale(1.08) translateY(-20px);
+    z-index: 50;
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.6));
+}
+
+/* Mission 4: Hyper-Visible Cursor Backlight */
+.cursor-backlight {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(196, 166, 122, 0.4) 0%, transparent 70%);
+    /* Opacity boost */
+    pointer-events: none;
+    z-index: 9999;
+    /* Force to top */
+    mix-blend-mode: screen;
+    transition: transform 0.05s linear;
+    border-radius: 50%;
+    filter: blur(40px);
+}
+
+/* Mission 1: Enhanced Nav Visibility */
+.ghost-nav-link {
+    font-size: 13px;
+    /* Mission 1: Larger font */
+    letter-spacing: 0.6em;
+    /* Mission 1: More spacing */
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.7);
+    /* Mission 1: High contrast */
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    font-family: 'Playfair Display', serif;
+}
+
+.ghost-nav-link:hover {
+    color: #c4a67a;
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 10px rgba(196, 166, 122, 0.4));
+}
+
+/* Mission 3: Crate CTA */
+.crate-cta {
+    color: #c4a67a !important;
+    position: relative;
+}
+
+.crate-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: right;
+}
+
+.crate-cta:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Mission 8: Inquiries Legend Visibility */
+.inquiry-subtitle {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+}
+
+/* Nav Artifact Thumbnail */
+.nav-artifact-thumb {
+    width: 48px;
+    height: 64px;
+    object-fit: cover;
+    border: 1px solid rgba(196, 166, 122, 0.3);
+    margin-top: 12px;
+    opacity: 0.6;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.nav-artifact-thumb:hover {
+    opacity: 1;
+    border-color: #c4a67a;
+    transform: scale(1.1);
+}
+
+/* Thicker Arrows */
+.thick-arrow {
+    stroke-width: 2.5px !important;
+}
+
+/* Hover Enhancement for Sections */
+section {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+}
+
+/* Custom Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
