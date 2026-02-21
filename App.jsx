@@ -263,10 +263,10 @@ const App = () => {
     { id: "ev_07", title: "Etheralphabet 07", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_009.png", orientation: "landscape" },
 
     // 08 Charity Campaign: Tender Whimsy
-    { id: "cc_01", title: "Tender Whimsy: Campaign 01", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/01_logo_inspired_redacted.png", orientation: "landscape" },
+    { id: "cc_01", title: "Tender Whimsy: Campaign 01", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/instagram/templates/01_donate_en.png", orientation: "landscape" },
     { id: "cc_02", title: "Tender Whimsy: Campaign 02", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/02_shapes_pattern.png", orientation: "portrait" },
-    { id: "cc_03", title: "Tender Whimsy: Campaign 03", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/03_train_redacted.png", orientation: "landscape" },
-    { id: "cc_04", title: "Tender Whimsy: Campaign 04", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/04_christmas_scene_redacted.png", orientation: "landscape" },
+    { id: "cc_03", title: "Tender Whimsy: Campaign 03", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/instagram/templates/02_story_en.png", orientation: "landscape" },
+    { id: "cc_04", title: "Tender Whimsy: Campaign 04", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/instagram/templates/03_countdown_en.png", orientation: "landscape" },
     { id: "cc_05", title: "Tender Whimsy: Campaign 05", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/05_mixed_icons.png", orientation: "landscape" }
   ]);
 
