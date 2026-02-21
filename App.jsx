@@ -75,12 +75,12 @@ const CategoryCarousel = ({ category, items }) => {
           </div>
 
           {/* Floating Info (Bottom Left of Image) */}
-          <div className={`absolute ${currentItem.orientation === 'portrait' ? '-bottom-12 ml-4' : '-bottom-24'} left-0 text-left pointer-events-none transition-all duration-700 opacity-80 group-hover/image:opacity-100 group-hover/image:-translate-y-4`}>
-            <div className="bg-black/20 backdrop-blur-sm p-4 inline-block">
-              <span className="text-[10px] text-[#c4a67a] uppercase tracking-[0.4em] font-bold mb-1 block drop-shadow-md">
+          <div className={`absolute ${currentItem.orientation === 'portrait' ? '-bottom-16 ml-4' : '-bottom-32'} left-0 text-left pointer-events-none transition-all duration-700 opacity-80 group-hover/image:opacity-100 group-hover/image:-translate-y-4`}>
+            <div className="bg-black/40 backdrop-blur-md p-6 inline-block rounded-xl border border-white/5 shadow-2xl">
+              <span className="text-[10px] text-[#c4a67a] uppercase tracking-[0.4em] font-bold mb-2 block drop-shadow-md">
                 {items.length > 1 ? `${currentIndex + 1} / ${items.length}` : 'Singleton'}
               </span>
-              <h3 className="text-5xl font-light italic text-[#f2f2f2] drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)] leading-tight">{currentItem.title}</h3>
+              <h3 className="text-4xl md:text-5xl font-light italic text-[#f2f2f2] drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)] leading-tight">{currentItem.title}</h3>
             </div>
           </div>
         </div>
@@ -100,11 +100,11 @@ const CategoryCarousel = ({ category, items }) => {
             </div>
 
             {/* Tag / Title Below Image */}
-            <div className="w-full text-left mt-8">
-              <span className="text-[10px] text-[#c4a67a] uppercase tracking-[0.4em] font-bold mb-2 block drop-shadow-md">
+            <div className="w-full text-left mt-16 md:mt-24 px-4">
+              <span className="text-[10px] text-[#c4a67a] uppercase tracking-[0.4em] font-bold mb-3 block drop-shadow-md">
                 {items.length > 1 ? `${index + 1} / ${items.length}` : 'Singleton'}
               </span>
-              <h3 className="text-3xl font-light italic text-[#f2f2f2] leading-tight drop-shadow-md">{item.title}</h3>
+              <h3 className="text-3xl font-light italic text-[#f2f2f2] leading-tight drop-shadow-lg">{item.title}</h3>
             </div>
           </div>
         ))}
@@ -484,18 +484,21 @@ const App = () => {
 
 
       {/* --- FOOTER --- */}
-      <footer className="relative z-10 py-48 px-12 border-t border-white/5 flex flex-col items-center gap-24">
-        <div className="w-32 h-[1px] bg-white opacity-20"></div>
-        <div className="flex flex-wrap justify-center gap-16 text-zinc-600">
-          <a href="https://x.com/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Twitter size={22} strokeWidth={1} /></a>
-          <a href="https://medium.com/@gabrielpaiva_53557" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700 font-bold text-[10px] uppercase tracking-widest border-b border-transparent hover:border-white">Medium</a>
-          <a href="https://www.instagram.com/gabriel_in_scotland?igsh=MThpNmNuOWhsamF5aQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Instagram size={22} strokeWidth={1} /></a>
+      <footer className="relative z-10 py-48 px-12 border-t border-white/5 flex flex-col items-center gap-24 overflow-hidden">
+        {/* Warm Cinematic Glow */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[800px] bg-[#c4a67a]/20 blur-[200px] rounded-full -z-10 pointer-events-none"></div>
+
+        <div className="w-32 h-[1px] bg-white opacity-20 relative z-10"></div>
+        <div className="flex flex-wrap justify-center items-center gap-16 text-zinc-400 relative z-10">
+          <a href="https://x.com/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Twitter size={28} strokeWidth={1.5} /></a>
+          <a href="https://medium.com/@gabrielpaiva_53557" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700 font-bold text-[12px] uppercase tracking-widest border-b border-transparent hover:border-white">Medium</a>
+          <a href="https://www.instagram.com/gabriel_in_scotland?igsh=MThpNmNuOWhsamF5aQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Instagram size={28} strokeWidth={1.5} /></a>
           <a href="https://flowybiz.gumroad.com/l/the_toddler_kit" target="_blank" rel="noopener noreferrer" id="deploy-control" className="hover:text-[#c4a67a] transition-all transform hover:-translate-y-2 duration-700 flex items-center gap-4 group">
-            <ShoppingBag size={20} strokeWidth={1} />
-            <span className="text-[9px] uppercase tracking-[0.4em] font-black italic">The Crate</span>
+            <ShoppingBag size={24} strokeWidth={1.5} />
+            <span className="text-[10px] uppercase tracking-[0.4em] font-black italic">The Crate</span>
           </a>
-          <a href="https://www.linkedin.com/in/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Linkedin size={22} strokeWidth={1} /></a>
-          <a href="mailto:gabrieldcpaiva@gmail.com" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Mail size={22} strokeWidth={1} /></a>
+          <a href="https://www.linkedin.com/in/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Linkedin size={28} strokeWidth={1.5} /></a>
+          <a href="mailto:gabrieldcpaiva@gmail.com" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Mail size={28} strokeWidth={1.5} /></a>
         </div>
         <div className="text-[10px] uppercase tracking-[2.5em] text-zinc-800 font-black pl-[2.5em]">
           © Gabriel Paiva 2026 · <span className="text-zinc-700 font-medium">Handcrafted</span>
