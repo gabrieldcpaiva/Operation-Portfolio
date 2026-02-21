@@ -260,7 +260,14 @@ const App = () => {
     { id: "ev_04", title: "Etheralphabet 04", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_006.png", orientation: "landscape" },
     { id: "ev_05", title: "Etheralphabet 05", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_007.png", orientation: "landscape" },
     { id: "ev_06", title: "Etheralphabet 06", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_008.png", orientation: "landscape" },
-    { id: "ev_07", title: "Etheralphabet 07", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_009.png", orientation: "landscape" }
+    { id: "ev_07", title: "Etheralphabet 07", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_009.png", orientation: "landscape" },
+
+    // 08 Charity Campaign: Tender Whimsy
+    { id: "cc_01", title: "Tender Whimsy: Campaign 01", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/01_logo_inspired.png", orientation: "landscape" },
+    { id: "cc_02", title: "Tender Whimsy: Campaign 02", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/02_shapes_pattern.png", orientation: "portrait" },
+    { id: "cc_03", title: "Tender Whimsy: Campaign 03", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/03_train.png", orientation: "landscape" },
+    { id: "cc_04", title: "Tender Whimsy: Campaign 04", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/04_christmas_scene.png", orientation: "landscape" },
+    { id: "cc_05", title: "Tender Whimsy: Campaign 05", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/05_mixed_icons.png", orientation: "landscape" }
   ]);
 
   const groupedArtifacts = artifacts.reduce((acc, item) => {
@@ -327,6 +334,39 @@ const App = () => {
               </h2>
               <div className="w-12 h-[1px] bg-[#c4a67a]/40 mt-6"></div>
             </div>
+            {category === "Tender Whimsy: Charity Campaign" && (
+              <div className="px-8 md:px-16 mb-16 md:mb-32">
+                <div className="p-8 md:p-16 border border-[#c4a67a]/20 bg-[#0a0a0a]/50 backdrop-blur-sm relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#c4a67a]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+                  <h3 className="text-[#c4a67a] text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold mb-4 md:mb-8">Case Study: Grassroots Christmas</h3>
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-16">
+                    <div>
+                      <span className="text-white/40 text-[9px] uppercase tracking-[0.3em] font-bold block mb-4">The Project</span>
+                      <p className="text-white/80 font-light italic text-xl md:text-2xl leading-relaxed">
+                        A purposeful grassroots Christmas charity campaign centered around compassion.
+                      </p>
+                    </div>
+                    <div>
+                      <span className="text-white/40 text-[9px] uppercase tracking-[0.3em] font-bold block mb-4">The Impact</span>
+                      <p className="text-white/80 font-light italic text-xl md:text-2xl leading-relaxed">
+                        Mobilized over R$18,000 in funded resources in just 10 days to directly feed families in need.
+                      </p>
+                    </div>
+                    <div>
+                      <span className="text-white/40 text-[9px] uppercase tracking-[0.3em] font-bold block mb-4">The Deliverables</span>
+                      <p className="text-white/80 font-light italic text-xl md:text-2xl leading-relaxed">
+                        Built a 75+ asset design system. Featured custom iconography and accessible coloration tailored for an autistic child.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-12 md:mt-16 pt-8 border-t border-[#c4a67a]/20">
+                    <p className="text-[#c4a67a]/60 text-xs italic tracking-widest uppercase">
+                      * Created with absolute love and respect for a brave mother and her son.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
             <CategoryCarousel category={category} items={items} />
           </section>
         ))}
