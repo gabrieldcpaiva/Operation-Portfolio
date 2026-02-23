@@ -262,12 +262,6 @@ const App = () => {
     { id: "ev_06", title: "Etheralphabet 06", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_008.png", orientation: "landscape" },
     { id: "ev_07", title: "Etheralphabet 07", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_009.png", orientation: "landscape" },
 
-    // 08 Charity Campaign: Tender Whimsy
-    { id: "cc_01", title: "Tender Whimsy: Campaign 01", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/instagram/templates/01_donate_en.png", orientation: "landscape" },
-    { id: "cc_02", title: "Tender Whimsy: Campaign 02", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/02_shapes_pattern.png", orientation: "portrait" },
-    { id: "cc_03", title: "Tender Whimsy: Campaign 03", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/instagram/templates/02_story_en.png", orientation: "landscape" },
-    { id: "cc_04", title: "Tender Whimsy: Campaign 04", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/instagram/templates/03_countdown_en.png", orientation: "landscape" },
-    { id: "cc_05", title: "Tender Whimsy: Campaign 05", category: "Tender Whimsy: Charity Campaign", url: "/coloring-pages/05_mixed_icons.png", orientation: "landscape" }
   ]);
 
   const groupedArtifacts = artifacts.reduce((acc, item) => {
@@ -292,11 +286,11 @@ const App = () => {
       </div>
 
       {/* --- GHOST NAVIGATION --- */}
-      <nav className={`fixed top-0 w-full z-[100] px-8 md:px-16 py-10 flex justify-between items-center transition-all duration-1000 ${scrolled ? 'opacity-80 bg-black/40 backdrop-blur-xl' : 'opacity-100'}`}>
+      <nav className={`fixed top-0 w-full z-[100] px-4 md:px-16 py-6 md:py-10 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 transition-all duration-1000 ${scrolled ? 'opacity-90 bg-black/80 md:bg-black/40 backdrop-blur-xl' : 'opacity-100'}`}>
         <div className={`transition-all duration-1000 flex flex-col items-center ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
           <h1 className="text-3xl font-bold tracking-[0.4em] uppercase text-[#c4a67a]">G.P.</h1>
         </div>
-        <div className="flex gap-24 items-center">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-24 items-center text-center">
           <a href="#work" className="ghost-nav-link">Works</a>
           <a href="#crate" className="ghost-nav-link crate-cta">Unlock the Black Box</a>
           <a href="#inquiries" className="ghost-nav-link">Inquiries</a>
@@ -334,48 +328,15 @@ const App = () => {
               </h2>
               <div className="w-12 h-[1px] bg-[#c4a67a]/40 mt-6"></div>
             </div>
-            {category === "Tender Whimsy: Charity Campaign" && (
-              <div className="px-8 md:px-16 mb-16 md:mb-32">
-                <div className="p-8 md:p-16 border border-[#c4a67a]/20 bg-[#0a0a0a]/50 backdrop-blur-sm relative overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#c4a67a]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-                  <h3 className="text-[#c4a67a] text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold mb-4 md:mb-8">Case Study: Grassroots Christmas</h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 md:gap-16">
-                    <div>
-                      <span className="text-white/40 text-[9px] uppercase tracking-[0.3em] font-bold block mb-4">The Project</span>
-                      <p className="text-white/80 font-light italic text-xl md:text-2xl leading-relaxed">
-                        A purposeful grassroots Christmas charity campaign centered around compassion.
-                      </p>
-                    </div>
-                    <div>
-                      <span className="text-white/40 text-[9px] uppercase tracking-[0.3em] font-bold block mb-4">The Impact</span>
-                      <p className="text-white/80 font-light italic text-xl md:text-2xl leading-relaxed">
-                        Mobilized over R$18,000 in funded resources in just 10 days to directly feed families in need.
-                      </p>
-                    </div>
-                    <div>
-                      <span className="text-white/40 text-[9px] uppercase tracking-[0.3em] font-bold block mb-4">The Deliverables</span>
-                      <p className="text-white/80 font-light italic text-xl md:text-2xl leading-relaxed">
-                        Built a 75+ asset design system. Featured custom iconography and accessible coloration tailored for an autistic child.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-12 md:mt-16 pt-8 border-t border-[#c4a67a]/20">
-                    <p className="text-[#c4a67a]/60 text-xs italic tracking-widest uppercase">
-                      * Created with absolute love and respect for a brave mother and her son. [Visuals redacted to protect identity].
-                    </p>
-                  </div>
-                </div>
-              </div>
-            )}
             <CategoryCarousel category={category} items={items} />
           </section>
         ))}
       </main>
 
       {/* --- INQUIRIES --- */}
-      <section id="inquiries" className="relative z-10 py-32 md:py-64 px-8 md:px-12 flex flex-col items-center">
+      <section id="inquiries" className="relative z-10 py-32 md:py-64 px-8 md:px-12 flex flex-col items-center overflow-hidden w-full max-w-[100vw]">
         <div className="max-w-2xl w-full relative">
-          <div className={`absolute inset-[-100px] bg-[#c4a67a]/30 blur-[120px] rounded-full transition-all duration-[2s] pointer-events-none ${formActive ? 'opacity-100 scale-110' : 'opacity-40 scale-90'}`}></div>
+          <div className={`absolute inset-0 md:inset-[-100px] bg-[#c4a67a]/30 blur-[80px] md:blur-[120px] rounded-full transition-all duration-[2s] pointer-events-none ${formActive ? 'opacity-100 scale-100 md:scale-110' : 'opacity-40 scale-90'}`}></div>
           <div className="relative z-10 space-y-16 md:space-y-24">
             <div className="space-y-6 text-center">
               <h2 className="text-5xl sm:text-6xl md:text-8xl font-light italic tracking-tighter text-[#c4a67a] leading-none text-white/90 drop-shadow-2xl">Inquiries</h2>
@@ -484,24 +445,28 @@ const App = () => {
 
 
       {/* --- FOOTER --- */}
-      <footer className="relative z-10 py-48 px-12 border-t border-white/5 flex flex-col items-center gap-24 overflow-hidden">
+      <footer className="relative z-10 py-24 md:py-48 px-6 md:px-12 border-t border-white/5 flex flex-col items-center gap-16 md:gap-24 overflow-hidden">
         {/* Warm Cinematic Glow */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[800px] bg-[#c4a67a]/20 blur-[200px] rounded-full -z-10 pointer-events-none"></div>
 
-        <div className="w-32 h-[1px] bg-white opacity-20 relative z-10"></div>
-        <div className="flex flex-wrap justify-center items-center gap-16 text-zinc-400 relative z-10">
-          <a href="https://x.com/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Twitter size={28} strokeWidth={1.5} /></a>
-          <a href="https://medium.com/@gabrielpaiva_53557" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700 font-bold text-[12px] uppercase tracking-widest border-b border-transparent hover:border-white">Medium</a>
-          <a href="https://www.instagram.com/gabriel_in_scotland?igsh=MThpNmNuOWhsamF5aQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Instagram size={28} strokeWidth={1.5} /></a>
-          <a href="https://flowybiz.gumroad.com/l/the_toddler_kit" target="_blank" rel="noopener noreferrer" id="deploy-control" className="hover:text-[#c4a67a] transition-all transform hover:-translate-y-2 duration-700 flex items-center gap-4 group">
+        <div className="w-24 md:w-32 h-[1px] bg-white opacity-20 relative z-10"></div>
+        <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-10 md:gap-16 text-zinc-400 relative z-10">
+          <div className="flex gap-8 items-center">
+            <a href="https://x.com/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Twitter size={28} strokeWidth={1.5} /></a>
+            <a href="https://medium.com/@gabrielpaiva_53557" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700 font-bold text-[12px] uppercase tracking-widest border-b border-transparent hover:border-white">Medium</a>
+            <a href="https://www.instagram.com/gabriel_in_scotland?igsh=MThpNmNuOWhsamF5aQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Instagram size={28} strokeWidth={1.5} /></a>
+          </div>
+          <a href="https://flowybiz.gumroad.com/l/the_toddler_kit" target="_blank" rel="noopener noreferrer" id="deploy-control" className="hover:text-[#c4a67a] transition-all transform hover:-translate-y-2 duration-700 flex flex-col md:flex-row items-center gap-3 md:gap-4 group">
             <ShoppingBag size={24} strokeWidth={1.5} />
             <span className="text-[10px] uppercase tracking-[0.4em] font-black italic">The Crate</span>
           </a>
-          <a href="https://www.linkedin.com/in/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Linkedin size={28} strokeWidth={1.5} /></a>
-          <a href="mailto:gabrieldcpaiva@gmail.com" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Mail size={28} strokeWidth={1.5} /></a>
+          <div className="flex gap-8 items-center">
+            <a href="https://www.linkedin.com/in/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Linkedin size={28} strokeWidth={1.5} /></a>
+            <a href="mailto:gabrieldcpaiva@gmail.com" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Mail size={28} strokeWidth={1.5} /></a>
+          </div>
         </div>
-        <div className="text-[10px] uppercase tracking-[2.5em] text-zinc-800 font-black pl-[2.5em]">
-          © Gabriel Paiva 2026 · <span className="text-zinc-700 font-medium">Handcrafted</span>
+        <div className="text-[9px] md:text-[10px] uppercase tracking-[1em] md:tracking-[2.5em] text-zinc-800 font-black pl-[1em] md:pl-[2.5em] text-center">
+          © Gabriel Paiva 2026 <br className="md:hidden mt-4" /> <span className="hidden md:inline">·</span> <span className="text-zinc-700 font-medium">Handcrafted</span>
         </div>
       </footer>
     </div>

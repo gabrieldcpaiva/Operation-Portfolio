@@ -3,8 +3,14 @@
 @tailwind utilities;
 
 @layer base {
-    html {
+
+    html,
+    body {
         scroll-behavior: smooth;
+        overflow-x: hidden;
+        width: 100%;
+        margin: 0;
+        padding: 0;
     }
 }
 
@@ -137,6 +143,13 @@ section {
         transform: none;
         /* Disable extreme hover lift on mobile to avoid layout shifts on tap */
         filter: none;
+    }
+
+    /* Enforce vertical stacking boundaries on links */
+    .ghost-nav-link {
+        font-size: 11px;
+        letter-spacing: 0.3em;
+        padding: 8px 0;
     }
 }
 
