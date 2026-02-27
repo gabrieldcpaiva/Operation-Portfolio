@@ -369,74 +369,96 @@ const App = () => {
         </div>
       </section>
 
-      {/* --- THE TODDLER TOOLKIT: PREMIUM SUPPLY CARD --- */}
-      <section id="crate" className="w-full max-w-7xl mx-auto px-8 md:px-12 py-24 md:py-32 flex justify-center items-center relative z-10">
+      {/* --- THE SOVEREIGN SHOWROOM (STOREFRONT) --- */}
+      <section id="crate" className="relative z-10 py-32 md:py-48 px-8 md:px-12 w-full max-w-[100vw] overflow-hidden">
+        {/* Ambient Showroom Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl h-[800px] bg-[#c4a67a]/5 blur-[150px] rounded-full -z-10 pointer-events-none"></div>
 
-        {/* Glow behind the card */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[600px] bg-[#c4a67a]/5 blur-[120px] rounded-full -z-10 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto flex flex-col items-center">
 
-        {/* The Card Container */}
-        <div className="relative w-full max-w-4xl bg-[#0a0a0a] rounded-[2rem] shadow-[0_30px_60px_rgba(0,0,0,0.9)] flex flex-col md:flex-row overflow-hidden group transition-all duration-700 hover:shadow-[0_40px_80px_rgba(196,166,122,0.1)] hover:-translate-y-2">
-
-          {/* Left: Image (Thumbnail size) */}
-          <div className="relative w-full md:w-2/5 aspect-[4/5] md:aspect-auto bg-black overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-            <img
-              src="/The_Toddler_Toolkit/cover.png"
-              alt="The Toddler Toolkit - Cover"
-              className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-            />
-            {/* Cheeky overlay tag */}
-            <div className="absolute top-4 left-4 z-20 bg-black/60 backdrop-blur-md px-3 py-1 border border-white/10">
-              <span className="text-[9px] uppercase tracking-[0.2em] text-[#c4a67a] font-bold">V1.0 Exclusive</span>
-            </div>
+          {/* Header */}
+          <div className="mb-24 md:mb-32 text-center space-y-6 fade-in-section">
+            <span className="text-[10px] md:text-[11px] uppercase tracking-[0.5em] md:tracking-[0.8em] text-[#c4a67a] font-black drop-shadow-md">The Vault</span>
+            <h2 className="text-5xl md:text-7xl font-light italic text-[#f2f2f2] drop-shadow-[0_4px_15px_rgba(0,0,0,0.8)] leading-none">
+              High-Leverage Assets
+            </h2>
+            <div className="w-16 md:w-24 h-[1px] bg-[#c4a67a]/40 mx-auto mt-8"></div>
           </div>
 
-          {/* Right: Content */}
-          <div className="w-full md:w-3/5 p-8 md:p-20 flex flex-col justify-center relative">
+          {/* Product Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 w-full">
 
-            {/* Header */}
-            <div className="mb-6">
-              <span className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold mb-2 block mt-4 md:mt-0">Supply Drop</span>
-              <h2 className="text-3xl md:text-4xl font-light italic text-white/90 leading-tight" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
-                The Toddler Toolkit
-              </h2>
+            {/* PRODUCT 1: The Toddler Toolkit v2 */}
+            <div className="relative group flex flex-col bg-[#0a0a0a]/60 backdrop-blur-sm border border-white/5 rounded-[2rem] overflow-hidden transition-all duration-700 hover:border-[#c4a67a]/30 hover:shadow-[0_40px_80px_rgba(196,166,122,0.05)] hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#050505] opacity-80 z-10 pointer-events-none"></div>
+
+              {/* Product Visual */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-black flex items-center justify-center">
+                <img
+                  src="/The_Toddler_Toolkit/cover.png"
+                  alt="The Toddler Toolkit v2"
+                  className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out"
+                />
+                <div className="absolute top-6 left-6 z-20 bg-black/80 backdrop-blur-md px-4 py-2 border border-white/10">
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-[#c4a67a] font-bold">Version 2.0 Live</span>
+                </div>
+              </div>
+
+              {/* Product Info */}
+              <div className="relative z-20 p-8 md:p-12 flex flex-col flex-grow">
+                <h3 className="text-3xl md:text-4xl font-light italic text-white/90 mb-4">The Toddler Toolkit</h3>
+                <p className="text-sm text-zinc-400 font-light leading-relaxed mb-8 flex-grow">
+                  A definitive collection of <strong>Robotic Motion Blueprints</strong> and <strong>Scene Hierarchies</strong>.
+                  Designed for visual architects who demand cinematic precision without the guesswork.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/5">
+                  <span className="text-[11px] text-zinc-500 font-mono tracking-widest uppercase font-bold">$12 // INSTANT ACCESS</span>
+                  <a
+                    href="https://flowybiz.gumroad.com/l/the_toddler_kit_v2"
+                    className="gumroad-button w-full sm:w-auto text-center border border-[#c4a67a]/40 text-[#c4a67a] hover:bg-[#c4a67a] hover:text-black rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500"
+                  >
+                    Acquire Asset
+                  </a>
+                </div>
+              </div>
             </div>
 
-            {/* Description */}
-            <p className="text-sm text-zinc-400 font-light leading-relaxed mb-8 pr-4">
-              A definitive collection of <strong>Robotic Motion Blueprints</strong> and <strong>Scene Hierarchies</strong>.
-              Designed for visual architects who demand cinematic precision without the guesswork.
-              Stop playing with prompts; start engineering scenes.
-            </p>
+            {/* PRODUCT 2: Supercar Relics Lookbook */}
+            <div className="relative group flex flex-col bg-[#0a0a0a]/60 backdrop-blur-sm border border-white/5 rounded-[2rem] overflow-hidden transition-all duration-700 hover:border-[#c4a67a]/30 hover:shadow-[0_40px_80px_rgba(196,166,122,0.05)] hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#050505] opacity-80 z-10 pointer-events-none"></div>
 
-            {/* List of Features (Compact) */}
-            <ul className="mb-10 space-y-2 text-[11px] uppercase tracking-[0.15em] text-zinc-500 font-medium">
-              <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-[#c4a67a] rounded-full"></span>
-                <span>8K Lighting Rigs</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-[#c4a67a] rounded-full"></span>
-                <span>Motion Physics Logic</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="w-1 h-1 bg-[#c4a67a] rounded-full"></span>
-                <span>Identity Consistency</span>
-              </li>
-            </ul>
+              {/* Product Visual */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-black flex items-center justify-center">
+                <img
+                  // Assuming the cover from conversation C7D79C40
+                  src="/Supercar_Relics_Lookbook/Cover.png"
+                  alt="Supercar Relics Lookbook"
+                  className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out"
+                />
+                <div className="absolute top-6 left-6 z-20 bg-black/80 backdrop-blur-md px-4 py-2 border border-white/10">
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-white/60 font-bold">New Release</span>
+                </div>
+              </div>
 
-            {/* Action Area */}
-            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 mt-10 md:mt-auto border-t border-white/5 md:border-none pt-8 md:pt-0">
-              <a
-                href="https://flowybiz.gumroad.com/l/the_toddler_kit"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full md:w-auto text-center border border-[#c4a67a]/40 text-[#c4a67a] hover:bg-[#c4a67a] hover:text-black rounded-full px-10 py-5 text-[12px] md:text-[10px] font-bold uppercase tracking-[0.3em] transition-all duration-500"
-              >
-                Get It
-              </a>
-              <span className="text-[11px] md:text-[9px] text-zinc-600 font-mono tracking-widest text-center w-full md:w-auto">$XX // LIMITED</span>
+              {/* Product Info */}
+              <div className="relative z-20 p-8 md:p-12 flex flex-col flex-grow">
+                <h3 className="text-3xl md:text-4xl font-light italic text-white/90 mb-4">Supercar Relics</h3>
+                <p className="text-sm text-zinc-400 font-light leading-relaxed mb-8 flex-grow">
+                  A high-end, authoritative Lookbook dissecting the prompt architecture behind museum-grade automotive relics.
+                  Master the fusion of rust, carbon fiber, and cinematic lighting.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/5">
+                  <span className="text-[11px] text-zinc-500 font-mono tracking-widest uppercase font-bold">$19 // DIGITAL GRIMOIRE</span>
+                  <a
+                    href="https://flowybiz.gumroad.com/l/supercar_relics"
+                    className="gumroad-button w-full sm:w-auto text-center border border-white/20 text-white/80 hover:bg-white hover:text-black hover:border-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500"
+                  >
+                    Acquire Asset
+                  </a>
+                </div>
+              </div>
             </div>
 
           </div>
