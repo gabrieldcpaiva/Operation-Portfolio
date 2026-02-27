@@ -400,7 +400,7 @@ const App = () => {
                   className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out"
                 />
                 <div className="absolute top-6 left-6 z-20 bg-black/80 backdrop-blur-md px-4 py-2 border border-white/10">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-[#c4a67a] font-bold">Version 2.0 Live</span>
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-[#c4a67a] font-bold">Lead Magnet</span>
                 </div>
               </div>
 
@@ -413,7 +413,7 @@ const App = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/5">
-                  <span className="text-[11px] text-zinc-500 font-mono tracking-widest uppercase font-bold">$12 // INSTANT ACCESS</span>
+                  <span className="text-[11px] text-zinc-500 font-mono tracking-widest uppercase font-bold">$0 // FOR THE ARCHITECTS</span>
                   <a
                     href="https://flowybiz.gumroad.com/l/the_toddler_kit_v2"
                     className="gumroad-button w-full sm:w-auto text-center border border-[#c4a67a]/40 text-[#c4a67a] hover:bg-[#c4a67a] hover:text-black rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500"
@@ -437,7 +437,7 @@ const App = () => {
                   className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out"
                 />
                 <div className="absolute top-6 left-6 z-20 bg-black/80 backdrop-blur-md px-4 py-2 border border-white/10">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-white/60 font-bold">New Release</span>
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-white/60 font-bold">Venice.ai Gift</span>
                 </div>
               </div>
 
@@ -450,7 +450,7 @@ const App = () => {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/5">
-                  <span className="text-[11px] text-zinc-500 font-mono tracking-widest uppercase font-bold">$19 // DIGITAL GRIMOIRE</span>
+                  <span className="text-[11px] text-zinc-500 font-mono tracking-widest uppercase font-bold">$0 // EXCLUSIVE RELEASE</span>
                   <a
                     href="https://flowybiz.gumroad.com/l/supercar_relics"
                     className="gumroad-button w-full sm:w-auto text-center border border-white/20 text-white/80 hover:bg-white hover:text-black hover:border-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500"
