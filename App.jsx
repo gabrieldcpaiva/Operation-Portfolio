@@ -415,7 +415,7 @@ const App = () => {
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/5">
                   <span className="text-[11px] text-zinc-500 font-mono tracking-widest uppercase font-bold">$0 // FOR THE ARCHITECTS</span>
                   <a
-                    href="https://flowybiz.gumroad.com/l/the_toddler_kit_v2"
+                    href="https://gpframes.gumroad.com/l/the_toddler_kit"
                     className="gumroad-button w-full sm:w-auto text-center border border-[#c4a67a]/40 text-[#c4a67a] hover:bg-[#c4a67a] hover:text-black rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500"
                   >
                     Acquire Asset
@@ -452,8 +452,35 @@ const App = () => {
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/5">
                   <span className="text-[11px] text-zinc-500 font-mono tracking-widest uppercase font-bold">$0 // EXCLUSIVE RELEASE</span>
                   <a
-                    href="https://flowybiz.gumroad.com/l/supercar_relics"
+                    href="https://gpframes.gumroad.com/l/supercar_relics"
                     className="gumroad-button w-full sm:w-auto text-center border border-white/20 text-white/80 hover:bg-white hover:text-black hover:border-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500"
+                  >
+                    Acquire Asset
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* PRODUCT 3: The Brand Forge */}
+            <div className="relative group flex flex-col bg-[#0a0a0a]/60 backdrop-blur-sm border border-[#c4a67a]/20 rounded-[2rem] overflow-hidden transition-all duration-700 hover:border-[#c4a67a]/50 hover:shadow-[0_40px_80px_rgba(196,166,122,0.1)] hover:-translate-y-2 lg:col-span-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#c4a67a]/5 to-transparent opacity-80 z-10 pointer-events-none"></div>
+
+              {/* Product Info */}
+              <div className="relative z-20 p-8 md:p-12 flex flex-col flex-grow justify-center items-center text-center">
+                <div className="inline-block px-4 py-2 border border-[#c4a67a]/30 rounded-none mb-8 bg-black/50 backdrop-blur-sm">
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-[#c4a67a] font-bold">New Vault Release</span>
+                </div>
+
+                <h3 className="text-4xl md:text-5xl font-light italic text-white/90 mb-6 drop-shadow-2xl">The Brand Forge</h3>
+                <p className="text-base text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto mb-10">
+                  Stop generating hollow, generic AI brands. This is a high-end, psychological architecture system designed to fabricate synthetic brands so dense, flawed, and hyper-realistic that they command immediate authority. Contains the 9 Archetypes & Realism Tokens.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full max-w-md pt-8 border-t border-white/10">
+                  <span className="text-[11px] text-[#c4a67a] font-mono tracking-widest uppercase font-bold">$49 // AGENCY LICENSE</span>
+                  <a
+                    href="https://gpframes.gumroad.com/l/the_brand_forge"
+                    className="gumroad-button w-full sm:w-auto text-center bg-[#c4a67a] text-black hover:bg-white hover:text-black rounded-full px-10 py-4 text-[11px] font-black uppercase tracking-[0.3em] transition-all duration-500 shadow-[0_0_30px_rgba(196,166,122,0.3)] hover:shadow-[0_0_50px_rgba(255,255,255,0.5)]"
                   >
                     Acquire Asset
                   </a>
