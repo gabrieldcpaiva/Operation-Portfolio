@@ -10,7 +10,6 @@ import {
   Loader2,
   Camera,
   Layers,
-  ShoppingBag,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -86,22 +85,22 @@ const CategoryCarousel = ({ category, items }) => {
         </div>
       </div>
 
-      {/* --- MOBILE VERTICAL COLUMN (HIDDEN ON DESKTOP) --- */}
-      <div className="md:hidden flex flex-col w-full space-y-24 px-8 pb-16">
+      {/* --- MOBILE HORIZONTAL SNAP SLIDER (HIDDEN ON DESKTOP) --- */}
+      <div className="md:hidden flex w-full overflow-x-auto snap-x snap-mandatory gap-8 px-6 pb-16 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {items.map((item, index) => (
-          <div key={item.id} className="relative w-full flex flex-col items-center">
+          <div key={item.id} className="relative shrink-0 w-[85vw] snap-center flex flex-col items-center justify-center">
             <div className="w-full flex justify-center artifact-lift pointer-events-none">
               <img
                 src={item.url}
                 alt={item.title}
-                className="w-full max-w-full h-auto object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
+                className="w-full max-w-full h-auto max-h-[60vh] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]"
                 loading="lazy"
               />
             </div>
 
             {/* Tag / Title Below Image */}
-            <div className="w-full text-left mt-16 md:mt-24 px-4">
-              <span className="text-[10px] text-[#c4a67a] uppercase tracking-[0.4em] font-bold mb-3 block drop-shadow-md">
+            <div className="w-full text-left mt-8 px-2">
+              <span className="text-[10px] text-[#c4a67a] uppercase tracking-[0.4em] font-bold mb-2 block drop-shadow-md">
                 {items.length > 1 ? `${index + 1} / ${items.length}` : 'Singleton'}
               </span>
               <h3 className="text-3xl font-light italic text-[#f2f2f2] leading-tight drop-shadow-lg">{item.title}</h3>
@@ -292,7 +291,6 @@ const App = () => {
         </div>
         <div className="flex flex-col md:flex-row gap-4 md:gap-24 items-center text-center">
           <a href="#work" className="ghost-nav-link">Works</a>
-          <a href="#crate" className="ghost-nav-link crate-cta">Unlock the Black Box</a>
           <a href="#inquiries" className="ghost-nav-link">Inquiries</a>
         </div>
       </nav>
@@ -320,6 +318,29 @@ const App = () => {
 
       {/* --- GALLERY SECTIONS --- */}
       <main id="work" className="relative z-10 space-y-24 md:space-y-96">
+        
+        {/* --- CLEAR OFFER SECTION --- */}
+        <section className="px-8 md:px-16 pt-24 pb-12 md:pb-24 max-w-5xl mx-auto flex flex-col items-center text-center fade-in-section">
+          <h2 className="text-3xl md:text-5xl font-light italic text-[#f2f2f2] leading-relaxed drop-shadow-md mb-12">
+            I build visual systems for brands that refuse to look like everyone else.
+          </h2>
+          <div className="flex flex-col items-start text-left space-y-6 md:space-y-8 w-full max-w-4xl">
+            <p className="flex text-lg md:text-2xl text-zinc-300 font-light leading-relaxed">
+              <span className="text-[#c4a67a] mr-4 mt-1 font-bold">→</span> 
+              <span>AI-generated imagery and assets that passes as real photography</span>
+            </p>
+            <p className="flex text-lg md:text-2xl text-zinc-300 font-light leading-relaxed">
+              <span className="text-[#c4a67a] mr-4 mt-1 font-bold">→</span> 
+              <span>Prompt architecture and automated pipelines, from the simplest to the most complex, for consistent, scalable content</span>
+            </p>
+            <p className="flex text-lg md:text-2xl text-zinc-300 font-light leading-relaxed">
+              <span className="text-[#c4a67a] mr-4 mt-1 font-bold">→</span> 
+              <span>Full creative direction for digital campaigns. Available for: brand projects, creative direction, custom prompt systems, pipelines for freelancers, small, medium and industrial grade enterprises. <a href="#inquiries" className="text-[#c4a67a] hover:text-white transition-colors underline decoration-[#c4a67a]/40 hover:decoration-white underline-offset-4 ml-2 italic font-serif">Inquire here</a></span>
+            </p>
+          </div>
+          <div className="w-16 md:w-24 h-[1px] bg-[#c4a67a]/40 mt-16 md:mt-24 mx-auto"></div>
+        </section>
+
         {Object.entries(groupedArtifacts).map(([category, items]) => (
           <section key={category} className="fade-in-section w-full">
             <div className="px-8 md:px-16 mb-8 md:mb-32 hidden md:block">
@@ -344,150 +365,29 @@ const App = () => {
               <p className="text-[10px] md:text-[11px] text-white uppercase tracking-[0.5em] md:tracking-[0.7em] font-black mt-8 italic bg-black/40 inline-block px-6 md:px-8 py-2 border border-white/5">Handcrafted aesthetics. Zero fluff.</p>
             </div>
 
-            <form action="mailto:gabrieldcpaiva@gmail.com" method="post" encType="text/plain" className="space-y-8 md:space-y-12 bg-transparent p-10 md:p-24 text-left relative"
+            <form name="inquiries" method="POST" data-netlify="true" className="space-y-8 md:space-y-12 bg-transparent p-10 md:p-24 text-left relative"
               onFocus={() => setFormActive(true)}
               onBlur={() => setFormActive(false)}>
+              
+              <input type="hidden" name="form-name" value="inquiries" />
               <div className="absolute inset-0 bg-black/40 backdrop-blur-2xl rounded-[3rem] -z-10"></div>
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#c4a67a]/20 to-transparent"></div>
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#c4a67a]/20 to-transparent"></div>
 
               <div className="space-y-4">
                 <label className="text-xs uppercase tracking-[0.6em] text-white/40 font-bold">Name</label>
-                <input type="text" name="name" placeholder="Your Name" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] placeholder:text-white/10" />
+                <input type="text" name="name" required placeholder="Your Name" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] placeholder:text-white/10" />
               </div>
               <div className="space-y-4">
                 <label className="text-xs uppercase tracking-[0.6em] text-white/40 font-bold">Email</label>
-                <input type="email" name="email" placeholder="Your Email" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] placeholder:text-white/10" />
+                <input type="email" name="email" required placeholder="Your Email" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] placeholder:text-white/10" />
               </div>
               <div className="space-y-4">
                 <label className="text-xs uppercase tracking-[0.6em] text-white/40 font-bold">What is your wildest idea?</label>
-                <textarea name="message" placeholder="Tell me everything..." rows="5" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] resize-none placeholder:text-white/10"></textarea>
+                <textarea name="message" required placeholder="Tell me everything..." rows="5" className="w-full bg-transparent border-b border-white/10 p-4 focus:border-[#c4a67a] outline-none transition-all text-2xl font-light italic text-[#f2f2f2] resize-none placeholder:text-white/10"></textarea>
               </div>
               <button type="submit" className="w-full py-6 mt-12 border border-[#c4a67a]/30 text-[#c4a67a] font-bold uppercase text-xs tracking-[0.6em] hover:bg-white hover:text-black hover:border-white transition-all duration-700 bg-transparent rounded-full shadow-2xl">Send It</button>
             </form>
-          </div>
-        </div>
-      </section>
-
-      {/* --- THE SOVEREIGN SHOWROOM (STOREFRONT) --- */}
-      <section id="crate" className="relative z-10 py-32 md:py-48 px-8 md:px-12 w-full max-w-[100vw] overflow-hidden">
-        {/* Ambient Showroom Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-7xl h-[800px] bg-[#c4a67a]/5 blur-[150px] rounded-full -z-10 pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto flex flex-col items-center">
-
-          {/* Header */}
-          <div className="mb-24 md:mb-32 text-center space-y-6 fade-in-section">
-            <span className="text-[10px] md:text-[11px] uppercase tracking-[0.5em] md:tracking-[0.8em] text-[#c4a67a] font-black drop-shadow-md">The Vault</span>
-            <h2 className="text-5xl md:text-7xl font-light italic text-[#f2f2f2] drop-shadow-[0_4px_15px_rgba(0,0,0,0.8)] leading-none">
-              High-Leverage Assets
-            </h2>
-            <div className="w-16 md:w-24 h-[1px] bg-[#c4a67a]/40 mx-auto mt-8"></div>
-          </div>
-
-          {/* Product Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 w-full">
-
-            {/* PRODUCT 1: The Toddler Toolkit v2 */}
-            <div className="relative group flex flex-col bg-[#0a0a0a]/60 backdrop-blur-sm border border-white/5 rounded-[2rem] overflow-hidden transition-all duration-700 hover:border-[#c4a67a]/30 hover:shadow-[0_40px_80px_rgba(196,166,122,0.05)] hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#050505] opacity-80 z-10 pointer-events-none"></div>
-
-              {/* Product Visual */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-black flex items-center justify-center">
-                <img
-                  src="/The_Toddler_Toolkit/cover.png"
-                  alt="The Toddler Toolkit v2"
-                  className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out"
-                />
-                <div className="absolute top-6 left-6 z-20 bg-black/80 backdrop-blur-md px-4 py-2 border border-white/10">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-[#c4a67a] font-bold">Lead Magnet</span>
-                </div>
-              </div>
-
-              {/* Product Info */}
-              <div className="relative z-20 p-8 md:p-12 flex flex-col flex-grow">
-                <h3 className="text-3xl md:text-4xl font-light italic text-white/90 mb-4">The Toddler Toolkit</h3>
-                <p className="text-sm text-zinc-400 font-light leading-relaxed mb-8 flex-grow">
-                  A definitive collection of <strong>Robotic Motion Blueprints</strong> and <strong>Scene Hierarchies</strong>.
-                  Designed for visual architects who demand cinematic precision without the guesswork.
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/5">
-                  <span className="text-[11px] text-zinc-500 font-mono tracking-widest uppercase font-bold">$0 // FOR THE ARCHITECTS</span>
-                  <a
-                    href="https://gpframes.gumroad.com/l/the_toddler_kit"
-                    className="gumroad-button w-full sm:w-auto text-center border border-[#c4a67a]/40 text-[#c4a67a] hover:bg-[#c4a67a] hover:text-black rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500"
-                  >
-                    Acquire Asset
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* PRODUCT 2: Supercar Relics Lookbook */}
-            <div className="relative group flex flex-col bg-[#0a0a0a]/60 backdrop-blur-sm border border-white/5 rounded-[2rem] overflow-hidden transition-all duration-700 hover:border-[#c4a67a]/30 hover:shadow-[0_40px_80px_rgba(196,166,122,0.05)] hover:-translate-y-2">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#050505] opacity-80 z-10 pointer-events-none"></div>
-
-              {/* Product Visual */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-black flex items-center justify-center">
-                <img
-                  // Assuming the cover from conversation C7D79C40
-                  src="/Supercar_Relics_Lookbook/Cover.png"
-                  alt="Supercar Relics Lookbook"
-                  className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-out"
-                />
-                <div className="absolute top-6 left-6 z-20 bg-black/80 backdrop-blur-md px-4 py-2 border border-white/10">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-white/60 font-bold">Venice.ai Gift</span>
-                </div>
-              </div>
-
-              {/* Product Info */}
-              <div className="relative z-20 p-8 md:p-12 flex flex-col flex-grow">
-                <h3 className="text-3xl md:text-4xl font-light italic text-white/90 mb-4">Supercar Relics</h3>
-                <p className="text-sm text-zinc-400 font-light leading-relaxed mb-8 flex-grow">
-                  A high-end, authoritative Lookbook dissecting the prompt architecture behind museum-grade automotive relics.
-                  Master the fusion of rust, carbon fiber, and cinematic lighting.
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-white/5">
-                  <span className="text-[11px] text-zinc-500 font-mono tracking-widest uppercase font-bold">$0 // EXCLUSIVE RELEASE</span>
-                  <a
-                    href="https://gpframes.gumroad.com/l/supercar_relics"
-                    className="gumroad-button w-full sm:w-auto text-center border border-white/20 text-white/80 hover:bg-white hover:text-black hover:border-white rounded-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500"
-                  >
-                    Acquire Asset
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* PRODUCT 3: The Brand Forge */}
-            <div className="relative group flex flex-col bg-[#0a0a0a]/60 backdrop-blur-sm border border-[#c4a67a]/20 rounded-[2rem] overflow-hidden transition-all duration-700 hover:border-[#c4a67a]/50 hover:shadow-[0_40px_80px_rgba(196,166,122,0.1)] hover:-translate-y-2 lg:col-span-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#c4a67a]/5 to-transparent opacity-80 z-10 pointer-events-none"></div>
-
-              {/* Product Info */}
-              <div className="relative z-20 p-8 md:p-12 flex flex-col flex-grow justify-center items-center text-center">
-                <div className="inline-block px-4 py-2 border border-[#c4a67a]/30 rounded-none mb-8 bg-black/50 backdrop-blur-sm">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-[#c4a67a] font-bold">New Vault Release</span>
-                </div>
-
-                <h3 className="text-4xl md:text-5xl font-light italic text-white/90 mb-6 drop-shadow-2xl">The Brand Forge</h3>
-                <p className="text-base text-zinc-400 font-light leading-relaxed max-w-2xl mx-auto mb-10">
-                  Stop generating hollow, generic AI brands. This is a high-end, psychological architecture system designed to fabricate synthetic brands so dense, flawed, and hyper-realistic that they command immediate authority. Contains the 9 Archetypes & Realism Tokens.
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full max-w-md pt-8 border-t border-white/10">
-                  <span className="text-[11px] text-[#c4a67a] font-mono tracking-widest uppercase font-bold">$49 // AGENCY LICENSE</span>
-                  <a
-                    href="https://gpframes.gumroad.com/l/the_brand_forge"
-                    className="gumroad-button w-full sm:w-auto text-center bg-[#c4a67a] text-black hover:bg-white hover:text-black rounded-full px-10 py-4 text-[11px] font-black uppercase tracking-[0.3em] transition-all duration-500 shadow-[0_0_30px_rgba(196,166,122,0.3)] hover:shadow-[0_0_50px_rgba(255,255,255,0.5)]"
-                  >
-                    Acquire Asset
-                  </a>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </section>
@@ -499,23 +399,28 @@ const App = () => {
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[800px] bg-[#c4a67a]/20 blur-[200px] rounded-full -z-10 pointer-events-none"></div>
 
         <div className="w-24 md:w-32 h-[1px] bg-white opacity-20 relative z-10"></div>
-        <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-10 md:gap-16 text-zinc-400 relative z-10">
+        <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-8 md:gap-12 text-zinc-400 relative z-10">
           <div className="flex gap-8 items-center">
             <a href="https://x.com/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Twitter size={28} strokeWidth={1.5} /></a>
             <a href="https://medium.com/@gabrielpaiva_53557" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700 font-bold text-[12px] uppercase tracking-widest border-b border-transparent hover:border-white">Medium</a>
             <a href="https://www.instagram.com/gabriel_in_scotland?igsh=MThpNmNuOWhsamF5aQ%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Instagram size={28} strokeWidth={1.5} /></a>
           </div>
-          <a href="https://flowybiz.gumroad.com/l/the_toddler_kit" target="_blank" rel="noopener noreferrer" id="deploy-control" className="hover:text-[#c4a67a] transition-all transform hover:-translate-y-2 duration-700 flex flex-col md:flex-row items-center gap-3 md:gap-4 group">
-            <ShoppingBag size={24} strokeWidth={1.5} />
-            <span className="text-[10px] uppercase tracking-[0.4em] font-black italic">The Crate</span>
-          </a>
+
           <div className="flex gap-8 items-center">
             <a href="https://www.linkedin.com/in/gabrieldcpaiva" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Linkedin size={28} strokeWidth={1.5} /></a>
             <a href="mailto:gabrieldcpaiva@gmail.com" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700"><Mail size={28} strokeWidth={1.5} /></a>
+            <a href="https://wa.me/5533984232513" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700 font-bold text-[12px] uppercase tracking-widest border-b border-transparent hover:border-white">WhatsApp</a>
+            <a href="https://gpframes.gumroad.com/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:-translate-y-2 duration-700 font-bold text-[12px] uppercase tracking-widest border-b border-transparent hover:border-white">Gumroad</a>
           </div>
         </div>
-        <div className="text-[9px] md:text-[10px] uppercase tracking-[1em] md:tracking-[2.5em] text-zinc-800 font-black pl-[1em] md:pl-[2.5em] text-center">
-          © Gabriel Paiva 2026 <br className="md:hidden mt-4" /> <span className="hidden md:inline">·</span> <span className="text-zinc-700 font-medium">Handcrafted</span>
+        
+        <div className="flex flex-col items-center justify-center gap-6 mt-8 relative z-10 text-center">
+          <div className="text-[10px] md:text-[11px] uppercase tracking-[0.3em] md:tracking-[0.5em] text-zinc-600 font-black">
+            © 2026. Gabriel Paiva. Based in Brazil.
+          </div>
+          <div className="text-[11px] md:text-[13px] uppercase tracking-[0.4em] text-[#c4a67a] font-bold italic" style={{ fontFamily: '"Playfair Display", serif' }}>
+            Building systems that outlast trends.
+          </div>
         </div>
       </footer>
     </div>
