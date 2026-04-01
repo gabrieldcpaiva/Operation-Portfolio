@@ -327,7 +327,7 @@ const App = () => {
           <div className="flex flex-col items-start text-left space-y-6 md:space-y-8 w-full max-w-4xl">
             <p className="flex text-lg md:text-2xl text-zinc-300 font-light leading-relaxed">
               <span className="text-[#c4a67a] mr-4 mt-1 font-bold">→</span> 
-              <span>AI-generated imagery and assets that passes as real photography</span>
+              <span>AI visuals and assets that transcend human eyes</span>
             </p>
             <p className="flex text-lg md:text-2xl text-zinc-300 font-light leading-relaxed">
               <span className="text-[#c4a67a] mr-4 mt-1 font-bold">→</span> 
@@ -335,7 +335,7 @@ const App = () => {
             </p>
             <p className="flex text-lg md:text-2xl text-zinc-300 font-light leading-relaxed">
               <span className="text-[#c4a67a] mr-4 mt-1 font-bold">→</span> 
-              <span>Full creative direction for digital campaigns. Available for: brand projects, creative direction, custom prompt systems, pipelines for freelancers, small, medium and industrial grade enterprises. <a href="#inquiries" className="text-[#c4a67a] hover:text-white transition-colors underline decoration-[#c4a67a]/40 hover:decoration-white underline-offset-4 ml-2 italic font-serif">Inquire here</a></span>
+              <span>Full creative direction for digital campaigns. Available for brand projects, custom prompt systems, and scalable pipelines — freelancers to industrial enterprises. <a href="#inquiries" className="text-[#c4a67a] hover:text-white transition-colors underline decoration-[#c4a67a]/40 flex-shrink-0 hover:decoration-white underline-offset-4 ml-2 italic font-serif inline-block">Inquire here</a></span>
             </p>
           </div>
           <div className="w-16 md:w-24 h-[1px] bg-[#c4a67a]/40 mt-16 md:mt-24 mx-auto"></div>
