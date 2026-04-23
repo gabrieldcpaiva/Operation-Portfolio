@@ -2,21 +2,14 @@ import React, { useState, useEffect } from 'react';
 import {
   Instagram,
   Mail,
-  ChevronDown,
   Linkedin,
   Twitter,
-  ExternalLink,
-  Sparkles,
-  Loader2,
-  Camera,
-  Layers,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
 
 // MASTER_BACKGROUND_URL: The Nano Banana Masterpiece
 const MASTER_BACKGROUND_URL = "/portfolio_images/Background%20-%20NON-NEGOTIABLE.jpeg";
-const apiKey = "";
 
 // Internal Component: Horizontal Carousel
 const CategoryCarousel = ({ category, items }) => {
@@ -112,33 +105,10 @@ const CategoryCarousel = ({ category, items }) => {
   );
 };
 
-const ProductCard = ({ title, subtitle, imageUrl, link }) => (
-  <a href={link} target="_blank" rel="noopener noreferrer" className="group relative block bg-[#0a0a0a]/40 border border-white/5 p-8 transition-all hover:border-[#c4a67a]/40 hover:-translate-y-2">
-    <div className="aspect-[4/5] mb-8 overflow-hidden bg-zinc-900 flex items-center justify-center">
-      {imageUrl ? (
-        <img src={imageUrl} alt={title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-1000" />
-      ) : (
-        <ShoppingBag size={48} strokeWidth={1} className="text-zinc-800" />
-      )}
-    </div>
-    <span className="text-[9px] uppercase tracking-[0.4em] text-[#c4a67a] font-bold block mb-2">{subtitle}</span>
-    <h4 className="text-2xl font-light italic text-white/90">{title}</h4>
-    <div className="mt-8 flex items-center gap-4 text-[9px] uppercase tracking-[0.3em] font-black text-zinc-500 group-hover:text-white transition-colors">
-      <span>View Artifact</span>
-      <ExternalLink size={10} />
-    </div>
-  </a>
-);
-
-
-
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [formActive, setFormActive] = useState(false);
-  const [sceneInput, setSceneInput] = useState("");
-  const [sceneOutput, setSceneOutput] = useState("");
-  const [isArchitecting, setIsArchitecting] = useState(false);
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -159,42 +129,6 @@ const App = () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
-
-  const callGemini = async (prompt, systemInstruction) => {
-    let delay = 1000;
-    for (let i = 0; i < 5; i++) {
-      try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            systemInstruction: { parts: [{ text: systemInstruction }] }
-          })
-        });
-        const data = await response.json();
-        return data.candidates?.[0]?.content?.parts?.[0]?.text;
-      } catch (error) {
-        if (i === 4) throw error;
-        await new Promise(resolve => setTimeout(resolve, delay));
-        delay *= 2;
-      }
-    }
-  };
-
-  const handleSceneArchitecture = async () => {
-    if (!sceneInput.trim()) return;
-    setIsArchitecting(true);
-    try {
-      const instruction = "Act as a world-class Cinematographer. Output precise technical camera/lighting specs based on the vibe. Keep it under 40 words. Voice: Dry humor, high authority.";
-      const result = await callGemini(`Vibe: ${sceneInput}`, instruction);
-      setSceneOutput(result);
-    } catch (e) {
-      setSceneOutput("Signal lost in the haze.");
-    } finally {
-      setIsArchitecting(false);
-    }
-  };
 
   // --- DYNAMIC ARTIFACTS: Mapping the reorganized folder structure ---
   const [artifacts, setArtifacts] = useState([
