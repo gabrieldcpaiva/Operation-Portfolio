@@ -13,7 +13,7 @@ const MASTER_BACKGROUND_URL = "/portfolio_images/Background%20-%20NON-NEGOTIABLE
 const apiKey = "";
 
 // Internal Component: Horizontal Carousel
-const CategoryCarousel = ({ category, items }) => {
+export const CategoryCarousel = ({ category, items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = (e) => {
