@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Instagram,
   Mail,
@@ -263,11 +263,13 @@ const App = () => {
 
   ]);
 
-  const groupedArtifacts = artifacts.reduce((acc, item) => {
-    if (!acc[item.category]) acc[item.category] = [];
-    acc[item.category].push(item);
-    return acc;
-  }, {});
+  const groupedArtifacts = useMemo(() => {
+    return artifacts.reduce((acc, item) => {
+      if (!acc[item.category]) acc[item.category] = [];
+      acc[item.category].push(item);
+      return acc;
+    }, {});
+  }, [artifacts]);
 
   return (
     <div className="min-h-screen bg-[#050505] text-[#f2f2f2] antialiased overflow-x-hidden selection:bg-[#c4a67a] selection:text-black" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
