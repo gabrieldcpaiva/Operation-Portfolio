@@ -8,7 +8,6 @@ import {
   ExternalLink,
   Sparkles,
   Loader2,
-  Camera,
   Layers,
   ChevronLeft,
   ChevronRight
