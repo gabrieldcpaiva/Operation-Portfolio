@@ -5,7 +5,7 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/Users/gabrielpaiva/Movies/Operation_Portfolio"
+        "."
       ]
     }
   }
