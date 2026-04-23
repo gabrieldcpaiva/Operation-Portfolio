@@ -2,14 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {
   Instagram,
   Mail,
-  ChevronDown,
   Linkedin,
   Twitter,
-  ExternalLink,
-  Sparkles,
-  Loader2,
-  Camera,
-  Layers,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -111,26 +105,6 @@ const CategoryCarousel = ({ category, items }) => {
     </div>
   );
 };
-
-const ProductCard = ({ title, subtitle, imageUrl, link }) => (
-  <a href={link} target="_blank" rel="noopener noreferrer" className="group relative block bg-[#0a0a0a]/40 border border-white/5 p-8 transition-all hover:border-[#c4a67a]/40 hover:-translate-y-2">
-    <div className="aspect-[4/5] mb-8 overflow-hidden bg-zinc-900 flex items-center justify-center">
-      {imageUrl ? (
-        <img src={imageUrl} alt={title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-1000" />
-      ) : (
-        <ShoppingBag size={48} strokeWidth={1} className="text-zinc-800" />
-      )}
-    </div>
-    <span className="text-[9px] uppercase tracking-[0.4em] text-[#c4a67a] font-bold block mb-2">{subtitle}</span>
-    <h4 className="text-2xl font-light italic text-white/90">{title}</h4>
-    <div className="mt-8 flex items-center gap-4 text-[9px] uppercase tracking-[0.3em] font-black text-zinc-500 group-hover:text-white transition-colors">
-      <span>View Artifact</span>
-      <ExternalLink size={10} />
-    </div>
-  </a>
-);
-
-
 
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
