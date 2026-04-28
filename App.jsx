@@ -10,7 +10,7 @@ import {
 
 // MASTER_BACKGROUND_URL: The Nano Banana Masterpiece
 const MASTER_BACKGROUND_URL = "/portfolio_images/Background%20-%20NON-NEGOTIABLE.jpeg";
-const apiKey = "";
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
 
 // Internal Component: Horizontal Carousel
 export const CategoryCarousel = ({ category, items }) => {
