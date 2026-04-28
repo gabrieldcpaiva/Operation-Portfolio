@@ -106,6 +106,71 @@ export const CategoryCarousel = ({ category, items }) => {
   );
 };
 
+const ARTIFACTS = [
+  // 01 Just Another Diamond Day
+  { id: "jadd_01", title: "Diamond Day 01", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_001.png", orientation: "portrait" },
+  { id: "jadd_02", title: "Diamond Day 02", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_002.jpg", orientation: "landscape" },
+  { id: "jadd_03", title: "Diamond Day 03", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_003.png", orientation: "landscape" },
+  { id: "jadd_04", title: "Diamond Day 04", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_004.png", orientation: "landscape" },
+  { id: "jadd_05", title: "Diamond Day 05", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_005.png", orientation: "landscape" },
+  { id: "jadd_06", title: "Diamond Day 06", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_006.png", orientation: "landscape" },
+  { id: "jadd_07", title: "Diamond Day 07", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_007.png", orientation: "landscape" },
+
+  // 02 After Salgado: Born of Sand and Code
+  { id: "as_01", title: "Salgado Vision 01", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_01.png", orientation: "portrait" },
+  { id: "as_02", title: "Salgado Vision 02", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_02.png", orientation: "portrait" },
+  { id: "as_03", title: "Salgado Vision 03", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_03.png", orientation: "portrait" },
+  { id: "as_04", title: "Salgado Vision 04", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_04.png", orientation: "portrait" },
+  { id: "as_05", title: "Salgado Vision 05", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_05.png", orientation: "portrait" },
+  { id: "as_06", title: "Salgado Vision 06", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_06.png", orientation: "portrait" },
+
+  // 03 Landscapes That Outlast Us
+  { id: "land_01", title: "Primal Horizon 01", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_001.png", orientation: "landscape" },
+  { id: "land_02", title: "Primal Horizon 02", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_002.png", orientation: "landscape" },
+  { id: "land_03", title: "Primal Horizon 03", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_003.png", orientation: "landscape" },
+  { id: "land_04", title: "Primal Horizon 04", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_004.png", orientation: "landscape" },
+  { id: "land_05", title: "Primal Horizon 05", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_005.png", orientation: "landscape" },
+  { id: "land_06", title: "Primal Horizon 06", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_006.png", orientation: "landscape" },
+  { id: "land_07", title: "Primal Horizon 07", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_007.png", orientation: "landscape" },
+  { id: "land_08", title: "Primal Horizon 08", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_008.png", orientation: "landscape" },
+
+  // 04 Cyberpunk Nights
+  { id: "cn_01", title: "Neon Haze 01", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_01.png", orientation: "landscape" },
+  { id: "cn_02", title: "Neon Haze 02", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_02.png", orientation: "landscape" },
+  { id: "cn_03", title: "Neon Haze 03", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_03.png", orientation: "landscape" },
+  { id: "cn_04", title: "Neon Haze 04", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_004.png", orientation: "portrait" },
+  { id: "cn_05", title: "Neon Haze 05", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_05.jpeg", orientation: "landscape" },
+  { id: "cn_06", title: "Neon Haze 06", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_006.png", orientation: "landscape" },
+
+  // 05 Haute Couture
+  { id: "hc_01", title: "Atelier 01", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_001.png", orientation: "portrait" },
+  { id: "hc_02", title: "Atelier 02", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_002.png", orientation: "landscape" },
+  { id: "hc_03", title: "Atelier 03", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_003.png", orientation: "landscape" },
+  { id: "hc_04", title: "Atelier 04", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_004.png", orientation: "landscape" },
+  { id: "hc_05", title: "Atelier 05", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_005.png", orientation: "landscape" },
+  { id: "hc_06", title: "Atelier 06", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_007.png", orientation: "landscape" },
+  { id: "hc_07", title: "Atelier 07", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_008.png", orientation: "portrait" },
+  { id: "hc_08", title: "Atelier 08", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_009.png", orientation: "portrait" },
+
+  // 06 Hyper Chic Editorial
+  { id: "hyp_01", title: "Editorial 01", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_01.png", orientation: "landscape" },
+  { id: "hyp_02", title: "Editorial 02", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_02.png", orientation: "landscape" },
+  { id: "hyp_03", title: "Editorial 03", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_03.png", orientation: "landscape" },
+  { id: "hyp_04", title: "Editorial 04", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_04.png", orientation: "portrait" },
+  { id: "hyp_05", title: "Editorial 05", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_05.png", orientation: "portrait" },
+  { id: "hyp_06", title: "Editorial 06", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_06.png", orientation: "portrait" },
+  { id: "hyp_07", title: "Editorial 07", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_07.png", orientation: "portrait" },
+
+  // 07 Etheralphabet Visions
+  { id: "ev_01", title: "Etheralphabet 01", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_001.png", orientation: "landscape" },
+  { id: "ev_02", title: "Etheralphabet 02", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_002.png", orientation: "landscape" },
+  { id: "ev_03", title: "Etheralphabet 03", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_003.jpeg", orientation: "landscape" },
+  { id: "ev_04", title: "Etheralphabet 04", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_006.png", orientation: "landscape" },
+  { id: "ev_05", title: "Etheralphabet 05", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_007.png", orientation: "landscape" },
+  { id: "ev_06", title: "Etheralphabet 06", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_008.png", orientation: "landscape" },
+  { id: "ev_07", title: "Etheralphabet 07", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_009.png", orientation: "landscape" },
+];
+
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -171,73 +236,8 @@ const App = () => {
   };
 
   // --- DYNAMIC ARTIFACTS: Mapping the reorganized folder structure ---
-  const [artifacts, setArtifacts] = useState([
-    // 01 Just Another Diamond Day
-    { id: "jadd_01", title: "Diamond Day 01", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_001.png", orientation: "portrait" },
-    { id: "jadd_02", title: "Diamond Day 02", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_002.jpg", orientation: "landscape" },
-    { id: "jadd_03", title: "Diamond Day 03", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_003.png", orientation: "landscape" },
-    { id: "jadd_04", title: "Diamond Day 04", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_004.png", orientation: "landscape" },
-    { id: "jadd_05", title: "Diamond Day 05", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_005.png", orientation: "landscape" },
-    { id: "jadd_06", title: "Diamond Day 06", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_006.png", orientation: "landscape" },
-    { id: "jadd_07", title: "Diamond Day 07", category: "Just Another Diamond Day", url: "/portfolio_images/01_Just_Another_Diamond_Day/Just_Another_Diamond_Day_007.png", orientation: "landscape" },
 
-    // 02 After Salgado: Born of Sand and Code
-    { id: "as_01", title: "Salgado Vision 01", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_01.png", orientation: "portrait" },
-    { id: "as_02", title: "Salgado Vision 02", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_02.png", orientation: "portrait" },
-    { id: "as_03", title: "Salgado Vision 03", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_03.png", orientation: "portrait" },
-    { id: "as_04", title: "Salgado Vision 04", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_04.png", orientation: "portrait" },
-    { id: "as_05", title: "Salgado Vision 05", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_05.png", orientation: "portrait" },
-    { id: "as_06", title: "Salgado Vision 06", category: "After Salgado: Born of Sand and Code", url: "/portfolio_images/02_After_Salgado_Born_of_Sand_and_Dust/After_Salgado_06.png", orientation: "portrait" },
-
-    // 03 Landscapes That Outlast Us
-    { id: "land_01", title: "Primal Horizon 01", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_001.png", orientation: "landscape" },
-    { id: "land_02", title: "Primal Horizon 02", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_002.png", orientation: "landscape" },
-    { id: "land_03", title: "Primal Horizon 03", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_003.png", orientation: "landscape" },
-    { id: "land_04", title: "Primal Horizon 04", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_004.png", orientation: "landscape" },
-    { id: "land_05", title: "Primal Horizon 05", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_005.png", orientation: "landscape" },
-    { id: "land_06", title: "Primal Horizon 06", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_006.png", orientation: "landscape" },
-    { id: "land_07", title: "Primal Horizon 07", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_007.png", orientation: "landscape" },
-    { id: "land_08", title: "Primal Horizon 08", category: "Landscapes That Outlast Us", url: "/portfolio_images/03_Landscapes_That_Outlast_Us/Landscapes_That_Outlast_Us_008.png", orientation: "landscape" },
-
-    // 04 Cyberpunk Nights
-    { id: "cn_01", title: "Neon Haze 01", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_01.png", orientation: "landscape" },
-    { id: "cn_02", title: "Neon Haze 02", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_02.png", orientation: "landscape" },
-    { id: "cn_03", title: "Neon Haze 03", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_03.png", orientation: "landscape" },
-    { id: "cn_04", title: "Neon Haze 04", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_004.png", orientation: "portrait" },
-    { id: "cn_05", title: "Neon Haze 05", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_05.jpeg", orientation: "landscape" },
-    { id: "cn_06", title: "Neon Haze 06", category: "Cyberpunk Nights", url: "/portfolio_images/04_Cyberpunk_Nights/Cyberpunk_Nights_006.png", orientation: "landscape" },
-
-    // 05 Haute Couture
-    { id: "hc_01", title: "Atelier 01", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_001.png", orientation: "portrait" },
-    { id: "hc_02", title: "Atelier 02", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_002.png", orientation: "landscape" },
-    { id: "hc_03", title: "Atelier 03", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_003.png", orientation: "landscape" },
-    { id: "hc_04", title: "Atelier 04", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_004.png", orientation: "landscape" },
-    { id: "hc_05", title: "Atelier 05", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_005.png", orientation: "landscape" },
-    { id: "hc_06", title: "Atelier 06", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_007.png", orientation: "landscape" },
-    { id: "hc_07", title: "Atelier 07", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_008.png", orientation: "portrait" },
-    { id: "hc_08", title: "Atelier 08", category: "Haute Couture", url: "/portfolio_images/05_Haute_Couture/Haute_Couture_009.png", orientation: "portrait" },
-
-    // 06 Hyper Chic Editorial
-    { id: "hyp_01", title: "Editorial 01", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_01.png", orientation: "landscape" },
-    { id: "hyp_02", title: "Editorial 02", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_02.png", orientation: "landscape" },
-    { id: "hyp_03", title: "Editorial 03", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_03.png", orientation: "landscape" },
-    { id: "hyp_04", title: "Editorial 04", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_04.png", orientation: "portrait" },
-    { id: "hyp_05", title: "Editorial 05", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_05.png", orientation: "portrait" },
-    { id: "hyp_06", title: "Editorial 06", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_06.png", orientation: "portrait" },
-    { id: "hyp_07", title: "Editorial 07", category: "Hyper Chic Editorial", url: "/portfolio_images/06_Hyper_Chic_Editorial/Hyper_Chic_07.png", orientation: "portrait" },
-
-    // 07 Etheralphabet Visions
-    { id: "ev_01", title: "Etheralphabet 01", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_001.png", orientation: "landscape" },
-    { id: "ev_02", title: "Etheralphabet 02", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_002.png", orientation: "landscape" },
-    { id: "ev_03", title: "Etheralphabet 03", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_003.jpeg", orientation: "landscape" },
-    { id: "ev_04", title: "Etheralphabet 04", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_006.png", orientation: "landscape" },
-    { id: "ev_05", title: "Etheralphabet 05", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_007.png", orientation: "landscape" },
-    { id: "ev_06", title: "Etheralphabet 06", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_008.png", orientation: "landscape" },
-    { id: "ev_07", title: "Etheralphabet 07", category: "Etheralphabet Visions", url: "/portfolio_images/07_Etheralphabet_Visions/Etheralphabet_Visions_009.png", orientation: "landscape" },
-
-  ]);
-
-  const groupedArtifacts = artifacts.reduce((acc, item) => {
+  const groupedArtifacts = ARTIFACTS.reduce((acc, item) => {
     if (!acc[item.category]) acc[item.category] = [];
     acc[item.category].push(item);
     return acc;
