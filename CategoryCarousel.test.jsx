@@ -76,4 +76,9 @@ describe('CategoryCarousel', () => {
      const desktopText = container.querySelector('.hidden.md\\:flex .text-\\[10px\\]');
      expect(desktopText).toHaveTextContent('Singleton');
   });
+
+  test('handles empty items array by rendering nothing', () => {
+    const { container } = render(<CategoryCarousel category="Empty Category" items={[]} />);
+    expect(container.firstChild).toBeNull();
+  });
 });

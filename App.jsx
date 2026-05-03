@@ -16,6 +16,8 @@ const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
 export const CategoryCarousel = ({ category, items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  if (!items || items.length === 0) return null;
+
   const nextSlide = (e) => {
     e?.stopPropagation();
     setCurrentIndex((prev) => (prev + 1) % items.length);
