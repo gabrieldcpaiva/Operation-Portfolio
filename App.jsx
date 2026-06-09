@@ -37,6 +37,8 @@ const throttle = (func, limit) => {
 export const CategoryCarousel = ({ category, items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  if (!items || items.length === 0) return null;
+
   const nextSlide = (e) => {
     e?.stopPropagation();
     setCurrentIndex((prev) => (prev + 1) % items.length);
