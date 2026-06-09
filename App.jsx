@@ -12,6 +12,27 @@ import {
 const MASTER_BACKGROUND_URL = "/portfolio_images/Background%20-%20NON-NEGOTIABLE.jpeg";
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
 
+// Utility: Throttle function with trailing edge execution
+const throttle = (func, limit) => {
+  let lastFunc;
+  let lastRan;
+  return function(...args) {
+    const context = this;
+    if (!lastRan) {
+      func.apply(context, args);
+      lastRan = Date.now();
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(function() {
+        if ((Date.now() - lastRan) >= limit) {
+          func.apply(context, args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
+    }
+  };
+};
+
 // Internal Component: Horizontal Carousel
 export const CategoryCarousel = ({ category, items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -188,8 +209,13 @@ const App = () => {
     document.head.appendChild(link);
     setIsLoaded(true);
 
-    const handleScroll = () => setScrolled(window.scrollY > 100);
-    const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
+    const handleScroll = throttle(() => {
+      const isOver = window.scrollY > 100;
+      setScrolled(prev => prev !== isOver ? isOver : prev);
+    }, 100);
+    const handleMouseMove = throttle((e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    }, 16);
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('mousemove', handleMouseMove);
