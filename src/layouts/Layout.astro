@@ -1,0 +1,123 @@
+---
+import '../styles/global.css';
+import '@fontsource/cormorant-garamond/300.css';
+import '@fontsource/cormorant-garamond/400.css';
+import '@fontsource/cormorant-garamond/700.css';
+import '@fontsource/cormorant-garamond/300-italic.css';
+import '@fontsource/cormorant-garamond/400-italic.css';
+import '@fontsource/playfair-display/400.css';
+import '@fontsource/playfair-display/700.css';
+import '@fontsource/playfair-display/400-italic.css';
+import '@fontsource/jetbrains-mono/300.css';
+import '@fontsource/jetbrains-mono/400.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // Myths Cannot Be Framed, Only Created' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+</head>
+<body>
+  <!-- Cursor candle glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <slot />
+
+  <!-- Scripts -->
+  <script>
+    import gsap from 'gsap';
+
+    // Cursor candle glow
+    const glow = document.getElementById('cursorGlow');
+    if (glow && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      });
+    }
+
+    // Scroll progress bar
+    window.addEventListener('scroll', () => {
+      const progress = document.getElementById('scrollProgress');
+      if (progress) {
+        const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        progress.style.width = scrolled + '%';
+      }
+    }, { passive: true });
+
+    // Intersection observer for fade-in
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add('visible');
+        });
+      },
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+    // Nav scroll state
+    const nav = document.getElementById('nav');
+    if (nav) {
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 100);
+      }, { passive: true });
+    }
+
+    // Collection carousel logic
+    document.querySelectorAll('[data-collection]').forEach((section) => {
+      const ci = section.getAttribute('data-collection');
+      const images = JSON.parse(section.getAttribute('data-images') || '[]');
+      let currentIdx = 0;
+      const imgEl = section.querySelector('.stage img');
+      const metaNum = section.querySelector('.image-meta .num');
+      const metaTitle = section.querySelector('.image-meta .title');
+      const thumbs = section.querySelectorAll('.thumb');
+
+      function setImage(idx: number) {
+        currentIdx = idx;
+        const next = images[idx];
+        if (imgEl) {
+          gsap.to(imgEl, { opacity: 0, duration: 0.25, ease: 'power2.out', onComplete: () => {
+            const image = imgEl as HTMLImageElement;
+            image.onload = () => { gsap.to(image, { opacity: 1, duration: 0.5, ease: 'power2.out' }); };
+            image.src = next.url;
+            image.alt = next.title;
+            if (image.complete) gsap.to(image, { opacity: 1, duration: 0.5, ease: 'power2.out' });
+          }});
+        }
+        thumbs.forEach((t, i) => t.classList.toggle('active', i === idx));
+        if (metaNum) {
+          metaNum.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
+        }
+        if (metaTitle) metaTitle.textContent = next.title;
+      }
+
+      section.querySelector('.nav-arrow.prev')?.addEventListener('click', () => {
+        setImage((currentIdx - 1 + images.length) % images.length);
+      });
+      section.querySelector('.nav-arrow.next')?.addEventListener('click', () => {
+        setImage((currentIdx + 1) % images.length);
+      });
+      thumbs.forEach((t, i) => t.addEventListener('click', () => setImage(i)));
+    });
+  </script>
+
+  <!-- Cinematic scroll animation (GSAP + Lenis) -->
+  <script>
+    import '../scripts/cinematic.ts';
+  </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+---
+import { collections, getDisplayName } from '../data/collections';
+---
+
+<!-- Nav -->
+<nav id="nav" class="fixed top-0 w-full z-[100] px-4 md:px-16 py-6 md:py-10 flex justify-between items-center transition-all duration-700" style="background: rgba(5,5,5,0.6); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.04);">
+  <div class="font-label text-lg md:text-xl font-bold tracking-[0.4em] text-gold cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">G.P.</div>
+  <div class="flex gap-8 md:gap-12">
+    <a href="#work" class="ghost-nav-link">Works</a>
+    <a href="#inquiries" class="ghost-nav-link">Inquiries</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="relative h-screen flex flex-col items-center justify-center text-center px-8 overflow-hidden">
+  <!-- Whisky masterpiece backdrop -->
+  <div class="absolute inset-0 z-0 pointer-events-none">
+    <img src="/portfolio_images/Background - NON-NEGOTIABLE.jpeg" alt="" class="w-full h-full object-cover opacity-60" style="filter: grayscale(0.04) saturate(1.08) contrast(1.08) brightness(0.82);" />
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(11,8,6,0.24), rgba(11,8,6,0.18), rgba(11,8,6,0.74));"></div>
+  </div>
+  <h1 class="relative z-10 text-[clamp(3rem,10vw,9rem)] font-light italic leading-none tracking-tighter text-white/95 hero-name">
+    Gabriel Paiva
+  </h1>
+  <p class="relative z-10 mt-6 font-label text-[0.65rem] md:text-sm tracking-[0.8em] uppercase text-gold font-bold opacity-90">
+    Archetype AI // Myths Cannot Be Framed, Only Created
+  </p>
+  <div class="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-8 opacity-30 cursor-pointer z-10" onclick="document.getElementById('work')?.scrollIntoView({behavior:'smooth'})">
+    <span class="text-[0.6rem] uppercase tracking-[1.5em] text-gold">Explore</span>
+    <div class="w-[1px] h-16 bg-gradient-to-b from-gold to-transparent"></div>
+  </div>
+</header>
+
+<!-- Offer -->
+<section class="max-w-3xl mx-auto px-8 py-16 md:py-24 text-center fade-in">
+  <h2 class="text-2xl md:text-4xl font-light italic leading-relaxed mb-12 text-pale">
+    I build visual systems for brands that refuse to look like everyone else.
+  </h2>
+  <div class="flex flex-col items-start text-left gap-6 md:gap-8 w-full max-w-2xl mx-auto">
+    <p class="flex text-lg md:text-xl text-zinc-300 font-light leading-relaxed">
+      <span class="text-gold mr-4 mt-1 font-bold">→</span>
+      <span>AI visuals and assets that transcend human eyes</span>
+    </p>
+    <p class="flex text-lg md:text-xl text-zinc-300 font-light leading-relaxed">
+      <span class="text-gold mr-4 mt-1 font-bold">→</span>
+      <span>Prompt architecture and automated pipelines for consistent, scalable content</span>
+    </p>
+    <p class="flex text-lg md:text-xl text-zinc-300 font-light leading-relaxed">
+      <span class="text-gold mr-4 mt-1 font-bold">→</span>
+      <span>Full creative direction for digital campaigns — freelancers to industrial enterprises</span>
+    </p>
+  </div>
+</section>
+
+<!-- Collections -->
+<main id="work" class="relative z-10">
+  {collections.map((col, ci) => {
+    const displayName = getDisplayName(col);
+    return (
+      <section
+        class="collection fade-in relative min-h-screen flex items-center justify-center py-16 overflow-hidden"
+        data-collection={ci}
+        data-images={JSON.stringify(col.images)}
+        style={`--mood: ${col.moodColor}`}
+      >
+        <!-- Ambient mood glow -->
+        <div class="absolute inset-0 pointer-events-none opacity-20" style={`background: radial-gradient(ellipse at center, ${col.moodColor} 0%, transparent 60%);`}></div>
+
+        <!-- Title -->
+        <div class="collection-title absolute top-8 md:top-12 left-4 md:left-16 z-5 max-w-[60%]">
+          {displayName}
+        </div>
+        <div class="collection-counter absolute top-8 md:top-12 right-4 md:right-16 z-5">
+          {String(ci + 1).padStart(2, '0')} / 07
+        </div>
+
+        <!-- Desktop stage -->
+        <div class="desktop-stage stage">
+          <img src={col.images[0].url} alt={col.images[0].title} class="stage-img" />
+          <div class="image-meta">
+            <span class="num">01 / {String(col.images.length).padStart(2, '0')}</span>
+            <span class="title">{col.images[0].title}</span>
+          </div>
+        </div>
+
+        <!-- Nav arrows (desktop) -->
+        <button class="nav-arrow prev" aria-label="Previous image">‹</button>
+        <button class="nav-arrow next" aria-label="Next image">›</button>
+
+        <!-- Thumbnail strip (desktop) -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20 desktop-stage">
+          {col.images.map((_, i) => (
+            <button class={`thumb ${i === 0 ? 'active' : ''}`} aria-label={`Image ${i + 1}`}></button>
+          ))}
+        </div>
+
+        <!-- Mobile slider -->
+        <div class="mobile-slider">
+          {col.images.map((img, i) => (
+            <div class="mobile-slide">
+              <img src={img.url} alt={img.title} loading="lazy" />
+              <div class="mt-4 text-left w-full px-2">
+                <span class="font-mono text-[0.6rem] text-gold tracking-[0.3em] block mb-1">{String(i + 1).padStart(2, '0')} / {String(col.images.length).padStart(2, '0')}</span>
+                <span class="font-mono text-[0.6rem] text-gold/85 tracking-[0.3em] block">{img.title}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  })}
+</main>
+
+<!-- Inquiries -->
+<section id="inquiries" class="relative z-10 py-24 md:py-32 px-8 flex flex-col items-center text-center">
+  <h2 class="text-[clamp(2.5rem,7vw,5rem)] font-light italic text-gold mb-4">Inquiries</h2>
+  <p class="font-label text-[0.6rem] tracking-[0.5em] uppercase text-white/40 font-bold mb-12">Handcrafted aesthetics. Zero fluff.</p>
+  <form name="inquiries" data-contact-form class="w-full max-w-lg flex flex-col gap-6">
+    <div>
+      <label class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">Name</label>
+      <input type="text" name="name" required placeholder="Your Name" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all placeholder:text-white/10" />
+    </div>
+    <div>
+      <label class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">Email</label>
+      <input type="email" name="email" required placeholder="Your Email" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all placeholder:text-white/10" />
+    </div>
+    <div>
+      <label class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">What is your wildest idea?</label>
+      <textarea name="message" required placeholder="Tell me everything..." rows="4" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all resize-none placeholder:text-white/10"></textarea>
+    </div>
+    <button type="submit" class="w-full py-4 mt-4 border border-gold/30 text-gold font-bold uppercase text-xs tracking-[0.4em] hover:bg-white hover:text-black hover:border-white transition-all duration-700 rounded-full">
+      Send It
+    </button>
+    <p class="font-mono text-[0.6rem] tracking-[0.22em] text-white/30 leading-relaxed">
+      Opens your email app addressed to gabriel@theflowyway.com
+    </p>
+  </form>
+</section>
+
+<script>
+  const contactForm = document.querySelector<HTMLFormElement>('[data-contact-form]');
+
+  contactForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const data = new FormData(contactForm);
+    const name = String(data.get('name') || '').trim();
+    const email = String(data.get('email') || '').trim();
+    const message = String(data.get('message') || '').trim();
+
+    const subject = encodeURIComponent(`Portfolio inquiry${name ? ` from ${name}` : ''}`);
+    const body = encodeURIComponent([
+      name ? `Name: ${name}` : '',
+      email ? `Email: ${email}` : '',
+      '',
+      message,
+    ].filter(Boolean).join('\n'));
+
+    window.location.href = `mailto:gabriel@theflowyway.com?subject=${subject}&body=${body}`;
+  });
+</script>
+
+<!-- Footer -->
+<footer class="relative z-10 py-12 md:py-16 px-6 border-t border-white/5 flex flex-col items-center gap-6 md:gap-8 text-center">
+  <div class="flex gap-6 md:gap-8 flex-wrap justify-center">
+    <a href="https://x.com/gabrieldcpaiva" target="_blank" rel="noopener" class="font-label text-[0.65rem] uppercase tracking-[0.3em] text-white/35 hover:text-white transition-all font-bold">X</a>
+    <a href="https://medium.com/@gabrielpaiva_53557" target="_blank" rel="noopener" class="font-label text-[0.65rem] uppercase tracking-[0.3em] text-white/35 hover:text-white transition-all font-bold">Medium</a>
+    <a href="https://www.instagram.com/gabriel_in_scotland" target="_blank" rel="noopener" class="font-label text-[0.65rem] uppercase tracking-[0.3em] text-white/35 hover:text-white transition-all font-bold">Instagram</a>
+    <a href="https://www.linkedin.com/in/gabrieldcpaiva" target="_blank" rel="noopener" class="font-label text-[0.65rem] uppercase tracking-[0.3em] text-white/35 hover:text-white transition-all font-bold">LinkedIn</a>
+    <a href="https://wa.me/5533984232513" target="_blank" rel="noopener" class="font-label text-[0.65rem] uppercase tracking-[0.3em] text-white/35 hover:text-white transition-all font-bold">WhatsApp</a>
+    <a href="https://gpframes.gumroad.com/" target="_blank" rel="noopener" class="font-label text-[0.65rem] uppercase tracking-[0.3em] text-white/35 hover:text-white transition-all font-bold">Gumroad</a>
+  </div>
+  <div class="font-mono text-[0.55rem] uppercase tracking-[0.3em] text-white/15">
+    © 2026. Gabriel Paiva. Building systems that outlast trends.
+  </div>
+</footer>
