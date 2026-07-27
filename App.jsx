@@ -11,7 +11,8 @@ import {
   Camera,
   Layers,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  ShoppingBag
 } from 'lucide-react';
 
 // MASTER_BACKGROUND_URL: The Nano Banana Masterpiece
@@ -112,7 +113,7 @@ const CategoryCarousel = ({ category, items }) => {
   );
 };
 
-const ProductCard = ({ title, subtitle, imageUrl, link }) => (
+export const ProductCard = ({ title, subtitle, imageUrl, link }) => (
   <a href={link} target="_blank" rel="noopener noreferrer" className="group relative block bg-[#0a0a0a]/40 border border-white/5 p-8 transition-all hover:border-[#c4a67a]/40 hover:-translate-y-2">
     <div className="aspect-[4/5] mb-8 overflow-hidden bg-zinc-900 flex items-center justify-center">
       {imageUrl ? (
