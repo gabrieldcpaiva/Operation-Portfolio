@@ -130,7 +130,24 @@ const ProductCard = ({ title, subtitle, imageUrl, link }) => (
   </a>
 );
 
+const CursorBacklight = () => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
+  useEffect(() => {
+    const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  return (
+    <div
+      className="cursor-backlight"
+      style={{ transform: `translate(${mousePos.x - 300}px, ${mousePos.y - 300}px)` }}
+    ></div>
+  );
+};
 
 const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -140,8 +157,6 @@ const App = () => {
   const [sceneOutput, setSceneOutput] = useState("");
   const [isArchitecting, setIsArchitecting] = useState(false);
 
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
   useEffect(() => {
     const link = document.createElement('link');
     link.href = "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap";
@@ -150,13 +165,10 @@ const App = () => {
     setIsLoaded(true);
 
     const handleScroll = () => setScrolled(window.scrollY > 100);
-    const handleMouseMove = (e) => setMousePos({ x: e.clientX, y: e.clientY });
 
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -278,10 +290,7 @@ const App = () => {
         <div className="absolute inset-0 bg-black/5"></div>
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-[0.03] mix-blend-screen"></div>
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent"></div>
-        <div
-          className="cursor-backlight"
-          style={{ transform: `translate(${mousePos.x - 300}px, ${mousePos.y - 300}px)` }}
-        ></div>
+        <CursorBacklight />
       </div>
 
       {/* --- GHOST NAVIGATION --- */}
