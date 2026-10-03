@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Instagram,
   Mail,
@@ -10,8 +10,6 @@ import {
 
 // MASTER_BACKGROUND_URL: The Nano Banana Masterpiece
 const MASTER_BACKGROUND_URL = "/portfolio_images/Background%20-%20NON-NEGOTIABLE.jpeg";
-const apiKey = "";
-
 // Internal Component: Horizontal Carousel
 const CategoryCarousel = ({ category, items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -113,10 +111,6 @@ const App = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [formActive, setFormActive] = useState(false);
-  const [sceneInput, setSceneInput] = useState("");
-  const [sceneOutput, setSceneOutput] = useState("");
-  const [isArchitecting, setIsArchitecting] = useState(false);
-
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -136,42 +130,6 @@ const App = () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
-
-  const callGemini = async (prompt, systemInstruction) => {
-    let delay = 1000;
-    for (let i = 0; i < 5; i++) {
-      try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            systemInstruction: { parts: [{ text: systemInstruction }] }
-          })
-        });
-        const data = await response.json();
-        return data.candidates?.[0]?.content?.parts?.[0]?.text;
-      } catch (error) {
-        if (i === 4) throw error;
-        await new Promise(resolve => setTimeout(resolve, delay));
-        delay *= 2;
-      }
-    }
-  };
-
-  const handleSceneArchitecture = async () => {
-    if (!sceneInput.trim()) return;
-    setIsArchitecting(true);
-    try {
-      const instruction = "Act as a world-class Cinematographer. Output precise technical camera/lighting specs based on the vibe. Keep it under 40 words. Voice: Dry humor, high authority.";
-      const result = await callGemini(`Vibe: ${sceneInput}`, instruction);
-      setSceneOutput(result);
-    } catch (e) {
-      setSceneOutput("Signal lost in the haze.");
-    } finally {
-      setIsArchitecting(false);
-    }
-  };
 
   // --- DYNAMIC ARTIFACTS: Mapping the reorganized folder structure ---
   const [artifacts, setArtifacts] = useState([
@@ -240,11 +198,11 @@ const App = () => {
 
   ]);
 
-  const groupedArtifacts = artifacts.reduce((acc, item) => {
+  const groupedArtifacts = useMemo(() => artifacts.reduce((acc, item) => {
     if (!acc[item.category]) acc[item.category] = [];
     acc[item.category].push(item);
     return acc;
-  }, {});
+  }, {}), [artifacts]);
 
   return (
     <div className="min-h-screen bg-[#050505] text-[#f2f2f2] antialiased overflow-x-hidden selection:bg-[#c4a67a] selection:text-black" style={{ fontFamily: '"Cormorant Garamond", serif' }}>
