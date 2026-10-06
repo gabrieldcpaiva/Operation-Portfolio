@@ -117,15 +117,18 @@ import { collections, getDisplayName } from '../data/collections';
   <form name="inquiries" data-contact-form class="w-full max-w-lg flex flex-col gap-6">
     <div>
       <label for="name" class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">Name</label>
-      <input id="name" type="text" name="name" required placeholder="Your Name" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all placeholder:text-white/10" />
+      <!-- Security: Input length limit added -->
+      <input id="name" type="text" name="name" required maxlength="100" placeholder="Your Name" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all placeholder:text-white/10" />
     </div>
     <div>
       <label for="email" class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">Email</label>
-      <input id="email" type="email" name="email" required placeholder="Your Email" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all placeholder:text-white/10" />
+      <!-- Security: Input length limit added -->
+      <input id="email" type="email" name="email" required maxlength="254" placeholder="Your Email" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all placeholder:text-white/10" />
     </div>
     <div>
       <label for="message" class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">What is your wildest idea?</label>
-      <textarea id="message" name="message" required placeholder="Tell me everything..." rows="4" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all resize-none placeholder:text-white/10"></textarea>
+      <!-- Security: Input length limit added -->
+      <textarea id="message" name="message" required maxlength="2000" placeholder="Tell me everything..." rows="4" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all resize-none placeholder:text-white/10"></textarea>
     </div>
     <button type="submit" class="w-full py-4 mt-4 border border-gold/30 text-gold font-bold uppercase text-xs tracking-[0.4em] hover:bg-white hover:text-black hover:border-white transition-all duration-700 rounded-full">
       Send It
