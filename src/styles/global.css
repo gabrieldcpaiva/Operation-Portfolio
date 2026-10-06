@@ -48,6 +48,7 @@ body::before {
 /* ── Cursor candle glow ── */
 .cursor-glow {
   position: fixed;
+  top: 0; left: 0; /* Default positioning, manipulated via transform */
   width: 500px; height: 500px;
   background: radial-gradient(circle, rgba(196,166,122,0.15) 0%, rgba(196,166,122,0.05) 30%, transparent 70%);
   pointer-events: none;
@@ -55,16 +56,20 @@ body::before {
   mix-blend-mode: screen;
   border-radius: 50%;
   filter: blur(30px);
-  transform: translate(-50%, -50%);
+  transform: translate3d(0, 0, 0) translate(-50%, -50%);
   transition: opacity 0.3s;
+  will-change: transform;
 }
 
 /* ── Scroll progress ── */
 .scroll-progress {
   position: fixed; top: 0; left: 0;
   height: 2px; background: var(--color-gold);
-  z-index: 200; width: 0%;
-  transition: width 0.1s;
+  z-index: 200; width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: transform 0.1s;
+  will-change: transform;
 }
 
 /* ── Nav ── */

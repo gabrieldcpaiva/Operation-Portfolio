@@ -43,20 +43,32 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
     // Cursor candle glow
     const glow = document.getElementById('cursorGlow');
     if (glow && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let rafId;
       document.addEventListener('mousemove', (e) => {
-        glow.style.left = e.clientX + 'px';
-        glow.style.top = e.clientY + 'px';
-      });
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+        }
+        rafId = requestAnimationFrame(() => {
+          // Use transform instead of left/top for better performance
+          glow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+        });
+      }, { passive: true });
     }
 
     // Scroll progress bar
-    window.addEventListener('scroll', () => {
-      const progress = document.getElementById('scrollProgress');
-      if (progress) {
-        const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        progress.style.width = scrolled + '%';
-      }
-    }, { passive: true });
+    const progress = document.getElementById('scrollProgress');
+    if (progress) {
+      let scrollRafId;
+      window.addEventListener('scroll', () => {
+        if (scrollRafId) {
+          cancelAnimationFrame(scrollRafId);
+        }
+        scrollRafId = requestAnimationFrame(() => {
+          const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+          progress.style.transform = `scaleX(${scrolled / 100})`;
+        });
+      }, { passive: true });
+    }
 
     // Intersection observer for fade-in
     const observer = new IntersectionObserver(
