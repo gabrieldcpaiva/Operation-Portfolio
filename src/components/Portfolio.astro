@@ -4,7 +4,7 @@ import { collections, getDisplayName } from '../data/collections';
 
 <!-- Nav -->
 <nav id="nav" class="fixed top-0 w-full z-[100] px-4 md:px-16 py-6 md:py-10 flex justify-between items-center transition-all duration-700" style="background: rgba(5,5,5,0.6); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.04);">
-  <div class="font-label text-lg md:text-xl font-bold tracking-[0.4em] text-gold cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">G.P.</div>
+  <button type="button" aria-label="Scroll to top" class="font-label text-lg md:text-xl font-bold tracking-[0.4em] text-gold cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded transition-all" onclick="window.scrollTo({top:0, behavior:'smooth'})">G.P.</button>
   <div class="flex gap-8 md:gap-12">
     <a href="#work" class="ghost-nav-link">Works</a>
     <a href="#inquiries" class="ghost-nav-link">Inquiries</a>
@@ -24,10 +24,10 @@ import { collections, getDisplayName } from '../data/collections';
   <p class="relative z-10 mt-6 font-label text-[0.65rem] md:text-sm tracking-[0.8em] uppercase text-gold font-bold opacity-90">
     Archetype AI // Myths Cannot Be Framed, Only Created
   </p>
-  <div class="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-8 opacity-30 cursor-pointer z-10" onclick="document.getElementById('work')?.scrollIntoView({behavior:'smooth'})">
+  <button type="button" aria-label="Explore works" class="absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-8 opacity-30 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold cursor-pointer z-10 transition-all rounded-sm py-2" onclick="document.getElementById('work')?.scrollIntoView({behavior:'smooth'})">
     <span class="text-[0.6rem] uppercase tracking-[1.5em] text-gold">Explore</span>
     <div class="w-[1px] h-16 bg-gradient-to-b from-gold to-transparent"></div>
-  </div>
+  </button>
 </header>
 
 <!-- Offer -->
