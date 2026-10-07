@@ -55,18 +55,51 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
       }, { passive: true });
     }
 
-    // Scroll progress bar
+    // Combined Scroll handler for progress bar and nav
     const progress = document.getElementById('scrollProgress');
-    if (progress) {
+    const nav = document.getElementById('nav');
+
+    if (progress || nav) {
       let scrollRafId;
+      let maxScroll = document.body.scrollHeight - window.innerHeight;
+      let isNavScrolled = false;
+
+      // Cache maxScroll to prevent layout thrashing on scroll
+      const updateMaxScroll = () => {
+        maxScroll = document.body.scrollHeight - window.innerHeight;
+      };
+
+      window.addEventListener('resize', updateMaxScroll, { passive: true });
+
+      // Also update on content changes if ResizeObserver is available
+      if (typeof ResizeObserver !== 'undefined') {
+        const resizeObserver = new ResizeObserver(updateMaxScroll);
+        resizeObserver.observe(document.body);
+      }
+
       window.addEventListener('scroll', () => {
-        if (scrollRafId) {
-          cancelAnimationFrame(scrollRafId);
+        if (!scrollRafId) {
+          scrollRafId = requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+
+            // Progress Bar
+            if (progress && maxScroll > 0) {
+              const scrolled = (scrollY / maxScroll) * 100;
+              progress.style.transform = `scaleX(${scrolled / 100})`;
+            }
+
+            // Nav State
+            if (nav) {
+              const shouldBeScrolled = scrollY > 100;
+              if (isNavScrolled !== shouldBeScrolled) {
+                isNavScrolled = shouldBeScrolled;
+                nav.classList.toggle('scrolled', isNavScrolled);
+              }
+            }
+
+            scrollRafId = null;
+          });
         }
-        scrollRafId = requestAnimationFrame(() => {
-          const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-          progress.style.transform = `scaleX(${scrolled / 100})`;
-        });
       }, { passive: true });
     }
 
@@ -80,14 +113,6 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
       { threshold: 0.1 }
     );
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
-
-    // Nav scroll state
-    const nav = document.getElementById('nav');
-    if (nav) {
-      window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 100);
-      }, { passive: true });
-    }
 
     // Collection carousel logic
     document.querySelectorAll('[data-collection]').forEach((section) => {
