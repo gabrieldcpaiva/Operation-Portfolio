@@ -59,13 +59,19 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
     const progress = document.getElementById('scrollProgress');
     if (progress) {
       let scrollRafId;
+      let maxScroll = document.body.scrollHeight - window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        maxScroll = document.body.scrollHeight - window.innerHeight;
+      }, { passive: true });
+
       window.addEventListener('scroll', () => {
         if (scrollRafId) {
           cancelAnimationFrame(scrollRafId);
         }
         scrollRafId = requestAnimationFrame(() => {
-          const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-          progress.style.transform = `scaleX(${scrolled / 100})`;
+          const scrolled = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+          progress.style.transform = `scaleX(${scrolled})`;
         });
       }, { passive: true });
     }
@@ -74,7 +80,10 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add('visible');
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
         });
       },
       { threshold: 0.1 }
@@ -84,8 +93,12 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
     // Nav scroll state
     const nav = document.getElementById('nav');
     if (nav) {
+      let navRafId;
       window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 100);
+        if (navRafId) cancelAnimationFrame(navRafId);
+        navRafId = requestAnimationFrame(() => {
+          nav.classList.toggle('scrolled', window.scrollY > 100);
+        });
       }, { passive: true });
     }
 
