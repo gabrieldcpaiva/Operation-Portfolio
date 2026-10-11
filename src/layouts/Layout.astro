@@ -55,9 +55,11 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
       }, { passive: true });
     }
 
-    // Scroll progress bar
+    // ⚡ Bolt: Consolidated scroll listeners and batched DOM updates via rAF to prevent layout thrashing
     const progress = document.getElementById('scrollProgress');
-    if (progress) {
+    const nav = document.getElementById('nav');
+
+    if (progress || nav) {
       let scrollRafId;
       let maxScroll = document.body.scrollHeight - window.innerHeight;
 
@@ -72,6 +74,16 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
         scrollRafId = requestAnimationFrame(() => {
           const scrolled = maxScroll > 0 ? window.scrollY / maxScroll : 0;
           progress.style.transform = `scaleX(${scrolled})`;
+          const currentScrollY = window.scrollY;
+
+          if (progress) {
+            const scrolled = (currentScrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            progress.style.transform = `scaleX(${scrolled / 100})`;
+          }
+
+          if (nav) {
+            nav.classList.toggle('scrolled', currentScrollY > 100);
+          }
         });
       }, { passive: true });
     }
