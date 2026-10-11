@@ -103,13 +103,13 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
     // Nav scroll state
-    const nav = document.getElementById('nav');
-    if (nav) {
+    const navEl = document.getElementById('nav');
+    if (navEl) {
       let navRafId;
       window.addEventListener('scroll', () => {
         if (navRafId) cancelAnimationFrame(navRafId);
         navRafId = requestAnimationFrame(() => {
-          nav.classList.toggle('scrolled', window.scrollY > 100);
+          navEl.classList.toggle('scrolled', window.scrollY > 100);
         });
       }, { passive: true });
     }
