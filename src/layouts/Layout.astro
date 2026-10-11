@@ -72,13 +72,11 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
           cancelAnimationFrame(scrollRafId);
         }
         scrollRafId = requestAnimationFrame(() => {
-          const scrolled = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-          progress.style.transform = `scaleX(${scrolled})`;
           const currentScrollY = window.scrollY;
 
           if (progress) {
-            const scrolled = (currentScrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-            progress.style.transform = `scaleX(${scrolled / 100})`;
+            const scrolled = maxScroll > 0 ? currentScrollY / maxScroll : 0;
+            progress.style.transform = `scaleX(${scrolled})`;
           }
 
           if (nav) {
@@ -102,17 +100,6 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
     );
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
-    // Nav scroll state
-    const nav = document.getElementById('nav');
-    if (nav) {
-      let navRafId;
-      window.addEventListener('scroll', () => {
-        if (navRafId) cancelAnimationFrame(navRafId);
-        navRafId = requestAnimationFrame(() => {
-          nav.classList.toggle('scrolled', window.scrollY > 100);
-        });
-      }, { passive: true });
-    }
 
     // Collection carousel logic
     document.querySelectorAll('[data-collection]').forEach((section) => {
