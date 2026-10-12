@@ -121,17 +121,17 @@ import { collections, getDisplayName } from '../data/collections';
   <p class="font-label text-[0.6rem] tracking-[0.5em] uppercase text-white/40 font-bold mb-12">Handcrafted aesthetics. Zero fluff.</p>
   <form name="inquiries" data-contact-form class="w-full max-w-lg flex flex-col gap-6">
     <div>
-      <label for="name" class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">Name</label>
+      <label for="name" class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">Name <span class="text-gold ml-1" aria-hidden="true">*</span></label>
       <!-- Security: Input length limit added -->
-      <input id="name" type="text" name="name" required maxlength="100" placeholder="Your Name" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all placeholder:text-white/10" />
+      <input id="name" type="text" name="name" required autocomplete="name" maxlength="100" placeholder="Your Name" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all placeholder:text-white/10" />
     </div>
     <div>
-      <label for="email" class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">Email</label>
+      <label for="email" class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">Email <span class="text-gold ml-1" aria-hidden="true">*</span></label>
       <!-- Security: Input length limit added -->
-      <input id="email" type="email" name="email" required maxlength="254" placeholder="Your Email" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all placeholder:text-white/10" />
+      <input id="email" type="email" name="email" required autocomplete="email" maxlength="254" placeholder="Your Email" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all placeholder:text-white/10" />
     </div>
     <div>
-      <label for="message" class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">What is your wildest idea?</label>
+      <label for="message" class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">What is your wildest idea? <span class="text-gold ml-1" aria-hidden="true">*</span></label>
       <!-- Security: Input length limit added -->
       <textarea id="message" name="message" required maxlength="2000" placeholder="Tell me everything..." rows="4" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all resize-none placeholder:text-white/10"></textarea>
     </div>

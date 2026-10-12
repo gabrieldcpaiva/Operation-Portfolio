@@ -4,3 +4,6 @@
 ## 2024-05-25 - Standardized Focus States
 **Learning:** Custom interactive elements often miss focus states which are essential for keyboard navigation.
 **Action:** Always add standardized `:focus-visible` states using `outline: 2px solid var(--color-gold)` in CSS or `focus-visible:ring-2 focus-visible:ring-gold` in Tailwind to ensure accessibility and maintain the design system consistency.
+## 2025-10-06 - Explicit Required Field Indicators and Autocomplete
+**Learning:** Found forms with required fields but no visual indicators, relying solely on placeholder text or implicit understanding. Missing `autocomplete` attributes on standard fields (like name/email) forces unnecessary cognitive load. Adding explicit `*` indicators and `autocomplete` benefits all users, specifically addressing common cognitive and physical accessibility needs.
+**Action:** Always include a visual required indicator (e.g., `<span aria-hidden="true">*</span>`) for `required` fields and explicitly add `autocomplete` attributes to standard form inputs.
