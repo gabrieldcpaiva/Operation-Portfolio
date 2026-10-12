@@ -55,17 +55,35 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
       }, { passive: true });
     }
 
-    // Scroll progress bar
+    // ⚡ Bolt: Consolidated scroll listeners and batched DOM updates via rAF to prevent layout thrashing.
+    // Reading dimensions like scrollHeight/innerHeight synchronously inside scroll handlers causes reflows.
+    // Instead, we use a cached maxScroll variable updated only on resize.
     const progress = document.getElementById('scrollProgress');
-    if (progress) {
+    const nav = document.getElementById('nav');
+
+    if (progress || nav) {
       let scrollRafId;
+      let maxScroll = document.body.scrollHeight - window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        maxScroll = document.body.scrollHeight - window.innerHeight;
+      }, { passive: true });
+
       window.addEventListener('scroll', () => {
         if (scrollRafId) {
           cancelAnimationFrame(scrollRafId);
         }
         scrollRafId = requestAnimationFrame(() => {
-          const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-          progress.style.transform = `scaleX(${scrolled / 100})`;
+          const currentScrollY = window.scrollY;
+
+          if (progress) {
+            const scrolled = maxScroll > 0 ? currentScrollY / maxScroll : 0;
+            progress.style.transform = `scaleX(${scrolled})`;
+          }
+
+          if (nav) {
+            nav.classList.toggle('scrolled', currentScrollY > 100);
+          }
         });
       }, { passive: true });
     }
@@ -74,7 +92,10 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add('visible');
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
         });
       },
       { threshold: 0.1 }
@@ -82,10 +103,14 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
     // Nav scroll state
-    const nav = document.getElementById('nav');
-    if (nav) {
+    const navDuplicate = document.getElementById('nav');
+    if (navDuplicate) {
+      let navRafId;
       window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 100);
+        if (navRafId) cancelAnimationFrame(navRafId);
+        navRafId = requestAnimationFrame(() => {
+          navDuplicate.classList.toggle('scrolled', window.scrollY > 100);
+        });
       }, { passive: true });
     }
 
