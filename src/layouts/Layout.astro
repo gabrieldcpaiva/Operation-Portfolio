@@ -55,7 +55,9 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
       }, { passive: true });
     }
 
-    // ⚡ Bolt: Consolidated scroll listeners and batched DOM updates via rAF to prevent layout thrashing
+    // ⚡ Bolt: Consolidated scroll listeners and batched DOM updates via rAF to prevent layout thrashing.
+    // Reading dimensions like scrollHeight/innerHeight synchronously inside scroll handlers causes reflows.
+    // Instead, we use a cached maxScroll variable updated only on resize.
     const progress = document.getElementById('scrollProgress');
     const nav = document.getElementById('nav');
 
@@ -72,13 +74,11 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
           cancelAnimationFrame(scrollRafId);
         }
         scrollRafId = requestAnimationFrame(() => {
-          const scrolled = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-          progress.style.transform = `scaleX(${scrolled})`;
           const currentScrollY = window.scrollY;
 
           if (progress) {
-            const scrolled = (currentScrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-            progress.style.transform = `scaleX(${scrolled / 100})`;
+            const scrolled = maxScroll > 0 ? currentScrollY / maxScroll : 0;
+            progress.style.transform = `scaleX(${scrolled})`;
           }
 
           if (nav) {
@@ -101,18 +101,6 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
       { threshold: 0.1 }
     );
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
-
-    // Nav scroll state
-    const nav = document.getElementById('nav');
-    if (nav) {
-      let navRafId;
-      window.addEventListener('scroll', () => {
-        if (navRafId) cancelAnimationFrame(navRafId);
-        navRafId = requestAnimationFrame(() => {
-          nav.classList.toggle('scrolled', window.scrollY > 100);
-        });
-      }, { passive: true });
-    }
 
     // Collection carousel logic
     document.querySelectorAll('[data-collection]').forEach((section) => {
