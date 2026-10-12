@@ -4,3 +4,6 @@
 ## 2024-05-25 - Standardized Focus States
 **Learning:** Custom interactive elements often miss focus states which are essential for keyboard navigation.
 **Action:** Always add standardized `:focus-visible` states using `outline: 2px solid var(--color-gold)` in CSS or `focus-visible:ring-2 focus-visible:ring-gold` in Tailwind to ensure accessibility and maintain the design system consistency.
+## 2024-10-12 - Explicit Required and Length Form Constraints
+**Learning:** Found that required form fields were lacking explicit visual indicators, which can be frustrating for users. Textareas with large limits can also lead to frustration without real-time character count feedback.
+**Action:** When adding constraints, always provide real-time visual feedback and clear `*` indicators to avoid implicit constraints surprising users.
