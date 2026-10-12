@@ -4,3 +4,7 @@
 ## 2026-10-10 - [Batching High-Frequency DOM Updates]
 **Learning:** Found an anti-pattern where multiple `scroll` event listeners independently fired synchronous layout-triggering DOM reads (`window.scrollY`) and DOM writes (`style.transform`, `classList.toggle`). This separation increases the risk of forced synchronous layouts (layout thrashing) during a high-frequency event loop.
 **Action:** Consolidate redundant scroll event listeners. Use a single `requestAnimationFrame` block per animation frame. Ensure all DOM reads (like `window.scrollY`) are grouped together and executed *before* any DOM writes (like `style` or `class` modifications) within that rAF block to maintain performance and avoid jank.
+
+## 2026-10-11 - Layout Thrashing in requestAnimationFrame
+**Learning:** Reading dimensions like `document.body.scrollHeight` and `window.innerHeight` synchronously inside a `requestAnimationFrame` loop (used for scroll progress) causes layout thrashing and forces continuous reflows, negating the benefits of rAF.
+**Action:** Cache these layout properties in variables updated only on `resize` events, and use the cached values inside the scroll loop to prevent unnecessary browser recalculations. When optimizing code or removing redundant listeners, explicitly document the fix and rationale in the PR to avoid the optimization being misconstrued as a deletion of functionality.
