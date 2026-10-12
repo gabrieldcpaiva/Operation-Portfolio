@@ -103,8 +103,7 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
     // Nav scroll state
-    const navDuplicate = document.getElementById('nav');
-    if (navDuplicate) {
+    if (nav) {
       let navRafId;
       window.addEventListener('scroll', () => {
         if (navRafId) cancelAnimationFrame(navRafId);
