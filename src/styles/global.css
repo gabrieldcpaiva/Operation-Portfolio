@@ -87,6 +87,7 @@ body::before {
   color: var(--color-gold);
   transform: translateY(-2px);
 }
+.ghost-nav-link:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 4px; border-radius: 2px; }
 
 /* ── Hero ── */
 .hero-name {
@@ -119,6 +120,7 @@ footer {
 }
 footer a { color: rgba(255,255,255,0.58) !important; }
 footer a:hover { color: var(--color-gold) !important; }
+footer a:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 4px; border-radius: 2px; }
 footer .font-mono { color: rgba(255,255,255,0.34) !important; }
 
 /* ── Collection section ── */
@@ -206,6 +208,7 @@ footer .font-mono { color: rgba(255,255,255,0.34) !important; }
   font-size: 2rem;
 }
 .nav-arrow:hover { color: var(--color-gold); transform: translateY(-50%) scale(1.2); }
+.nav-arrow:focus-visible { outline: 2px solid var(--color-gold); outline-offset: -4px; border-radius: 50%; }
 .nav-arrow.prev { left: 3rem; }
 .nav-arrow.next { right: 3rem; }
 
@@ -219,6 +222,7 @@ footer .font-mono { color: rgba(255,255,255,0.34) !important; }
 }
 .thumb.active { background: var(--color-gold); width: 60px; }
 .thumb:hover { background: rgba(196,166,122,0.5); }
+.thumb:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 4px; }
 
 /* ── Fade-in ── */
 .fade-in {

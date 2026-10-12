@@ -62,6 +62,12 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
 
     if (progress || nav) {
       let scrollRafId;
+      let maxScroll = document.body.scrollHeight - window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        maxScroll = document.body.scrollHeight - window.innerHeight;
+      }, { passive: true });
+
       window.addEventListener('scroll', () => {
         if (scrollRafId) {
           cancelAnimationFrame(scrollRafId);
