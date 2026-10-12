@@ -102,6 +102,18 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
     );
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
+    // Nav scroll state
+    const navDuplicate = document.getElementById('nav');
+    if (navDuplicate) {
+      let navRafId;
+      window.addEventListener('scroll', () => {
+        if (navRafId) cancelAnimationFrame(navRafId);
+        navRafId = requestAnimationFrame(() => {
+          navDuplicate.classList.toggle('scrolled', window.scrollY > 100);
+        });
+      }, { passive: true });
+    }
+
     // Collection carousel logic
     document.querySelectorAll('[data-collection]').forEach((section) => {
       const ci = section.getAttribute('data-collection');
