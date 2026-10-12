@@ -55,9 +55,8 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
       }, { passive: true });
     }
 
-    // ⚡ Bolt: Consolidated scroll listeners and batched DOM updates via rAF to prevent layout thrashing.
-    // Reading dimensions like scrollHeight/innerHeight synchronously inside scroll handlers causes reflows.
-    // Instead, we use a cached maxScroll variable updated only on resize.
+    // Scroll handling (progress bar & nav state)
+    // ⚡ Bolt: consolidate scroll listeners and throttle using requestAnimationFrame
     const progress = document.getElementById('scrollProgress');
     const nav = document.getElementById('nav');
 
@@ -74,15 +73,13 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
           cancelAnimationFrame(scrollRafId);
         }
         scrollRafId = requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-
+          const scrollY = window.scrollY; // cache scrollY
           if (progress) {
-            const scrolled = maxScroll > 0 ? currentScrollY / maxScroll : 0;
-            progress.style.transform = `scaleX(${scrolled})`;
+            const scrolled = (scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            progress.style.transform = `scaleX(${scrolled / 100})`;
           }
-
           if (nav) {
-            nav.classList.toggle('scrolled', currentScrollY > 100);
+            nav.classList.toggle('scrolled', scrollY > 100);
           }
         });
       }, { passive: true });
@@ -90,28 +87,17 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
 
     // Intersection observer for fade-in
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries, observerInstance) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
             e.target.classList.add('visible');
-            observer.unobserve(e.target);
+            observerInstance.unobserve(e.target); // ⚡ Bolt: unobserve once faded in to save CPU
           }
         });
       },
       { threshold: 0.1 }
     );
     document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
-
-    // Nav scroll state
-    if (nav) {
-      let navRafId;
-      window.addEventListener('scroll', () => {
-        if (navRafId) cancelAnimationFrame(navRafId);
-        navRafId = requestAnimationFrame(() => {
-          navDuplicate.classList.toggle('scrolled', window.scrollY > 100);
-        });
-      }, { passive: true });
-    }
 
     // Collection carousel logic
     document.querySelectorAll('[data-collection]').forEach((section) => {
