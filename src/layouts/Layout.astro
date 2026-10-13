@@ -75,7 +75,7 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
         scrollRafId = requestAnimationFrame(() => {
           const scrollY = window.scrollY; // cache scrollY
           if (progress) {
-            const scrolled = (scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            const scrolled = maxScroll > 0 ? (scrollY / maxScroll) * 100 : 0;
             progress.style.transform = `scaleX(${scrolled / 100})`;
           }
           if (nav) {
