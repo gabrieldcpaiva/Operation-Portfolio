@@ -130,7 +130,7 @@ import { collections, getDisplayName } from '../data/collections';
       <!-- Security: Input length limit added -->
       <input id="email" type="email" name="email" required autocomplete="email" maxlength="254" placeholder="Your Email" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all placeholder:text-white/10" />
     </div>
-    <div>
+    <div class="relative">
       <label for="message" class="font-label text-[0.6rem] tracking-[0.4em] uppercase text-white/35 font-bold block mb-2">What is your wildest idea? <span class="text-gold ml-1" aria-hidden="true">*</span></label>
       <!-- Security: Input length limit added -->
       <textarea id="message" name="message" required maxlength="2000" placeholder="Tell me everything..." rows="4" class="w-full bg-transparent border-b border-white/10 py-3 text-xl font-light italic text-pale outline-none focus:border-gold transition-all resize-none placeholder:text-white/10"></textarea>
