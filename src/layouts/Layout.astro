@@ -109,6 +109,12 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
       const metaTitle = section.querySelector('.image-meta .title');
       const thumbs = section.querySelectorAll('.thumb');
 
+      function preloadImage(idx: number) {
+        if (!images[idx]) return;
+        const img = new Image();
+        img.src = images[idx].url;
+      }
+
       function setImage(idx: number) {
         currentIdx = idx;
         const next = images[idx];
@@ -126,6 +132,9 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
           metaNum.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
         }
         if (metaTitle) metaTitle.textContent = next.title;
+
+        // ⚡ Bolt: Eagerly preload the next image to prevent layout flash during navigation
+        preloadImage((idx + 1) % images.length);
       }
 
       section.querySelector('.nav-arrow.prev')?.addEventListener('click', () => {
@@ -135,6 +144,11 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
         setImage((currentIdx + 1) % images.length);
       });
       thumbs.forEach((t, i) => t.addEventListener('click', () => setImage(i)));
+
+      // Initial preload for the second image
+      if (images.length > 1) {
+        preloadImage(1);
+      }
     });
   </script>
 
