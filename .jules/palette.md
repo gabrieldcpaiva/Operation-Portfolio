@@ -10,3 +10,6 @@
 ## 2024-05-24 - Absolute Positioning in Forms
 **Learning:** When adding `absolute` positioned elements (like character counters or validation icons) inside form fields, always ensure the immediate wrapper `div` has `relative` positioning. Failing to do so causes the absolute element to position relative to the entire form or nearest positioned ancestor, which can lead to overlapping text or out-of-bounds UI elements on different screen sizes.
 **Action:** Before implementing an absolute positioned micro-interaction, trace up the DOM tree to verify the correct parent acts as the relative positioning boundary.
+## 2025-10-06 - Dynamic Carousel Accessibility
+**Learning:** Dynamic carousels often visually update their active element and supplementary text, but screen readers require explicit ARIA roles to understand these changes.
+**Action:** Always add `aria-live="polite"` to containers that update their content dynamically (like image metadata) so changes are announced. Use `aria-current="true"` on the currently active thumbnail or button in a sequence, and dynamically update it when the state changes.

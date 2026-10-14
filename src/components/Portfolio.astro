@@ -81,7 +81,7 @@ import { collections, getDisplayName } from '../data/collections';
         <!-- Desktop stage -->
         <div class="desktop-stage stage">
           <img src={col.images[0].url} alt={col.images[0].title} class="stage-img" loading="lazy" decoding="async" />
-          <div class="image-meta">
+          <div class="image-meta" aria-live="polite" aria-atomic="true">
             <span class="num">01 / {String(col.images.length).padStart(2, '0')}</span>
             <span class="title">{col.images[0].title}</span>
           </div>
@@ -92,9 +92,9 @@ import { collections, getDisplayName } from '../data/collections';
         <button class="nav-arrow next" aria-label="Next image">›</button>
 
         <!-- Thumbnail strip (desktop) -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20 desktop-stage">
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20 desktop-stage" role="group" aria-label="Image thumbnails">
           {col.images.map((_, i) => (
-            <button class={`thumb ${i === 0 ? 'active' : ''}`} aria-label={`Image ${i + 1}`}></button>
+            <button class={`thumb ${i === 0 ? 'active' : ''}`} aria-label={`Image ${i + 1}`} aria-current={i === 0 ? 'true' : undefined}></button>
           ))}
         </div>
 
