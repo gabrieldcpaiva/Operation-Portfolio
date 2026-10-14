@@ -8,3 +8,7 @@
 ## 2026-10-11 - Layout Thrashing in requestAnimationFrame
 **Learning:** Reading dimensions like `document.body.scrollHeight` and `window.innerHeight` synchronously inside a `requestAnimationFrame` loop (used for scroll progress) causes layout thrashing and forces continuous reflows, negating the benefits of rAF.
 **Action:** Cache these layout properties in variables updated only on `resize` events, and use the cached values inside the scroll loop to prevent unnecessary browser recalculations. When optimizing code or removing redundant listeners, explicitly document the fix and rationale in the PR to avoid the optimization being misconstrued as a deletion of functionality.
+
+## 2026-10-14 - [Carousel Image Preloading and Perceived Performance]
+**Learning:** Found a perceived performance bottleneck in the carousel where navigating to the next image caused a layout flash/delay while the browser downloaded the new image.
+**Action:** Implement eager preloading for adjacent images (e.g. `n+1`) right before they are requested, to ensure the image is cached by the time the user navigates, minimizing layout shifting and delays in the GSAP animation sequence.
