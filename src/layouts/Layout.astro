@@ -121,7 +121,10 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
             if (image.complete) gsap.to(image, { opacity: 1, duration: 0.5, ease: 'power2.out' });
           }});
         }
-        thumbs.forEach((t, i) => t.classList.toggle('active', i === idx));
+        thumbs.forEach((t, i) => {
+          t.classList.toggle('active', i === idx);
+          t.setAttribute('aria-current', i === idx ? 'true' : 'false');
+        });
         if (metaNum) {
           metaNum.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
         }

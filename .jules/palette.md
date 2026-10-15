@@ -10,3 +10,6 @@
 ## 2024-05-24 - Absolute Positioning in Forms
 **Learning:** When adding `absolute` positioned elements (like character counters or validation icons) inside form fields, always ensure the immediate wrapper `div` has `relative` positioning. Failing to do so causes the absolute element to position relative to the entire form or nearest positioned ancestor, which can lead to overlapping text or out-of-bounds UI elements on different screen sizes.
 **Action:** Before implementing an absolute positioned micro-interaction, trace up the DOM tree to verify the correct parent acts as the relative positioning boundary.
+## 2026-10-15 - Dynamic aria-current states
+**Learning:** When using map-generated elements for interactive components like image carousel thumbnails, explicitly declaring `aria-current='true'` on the initial active item and dynamically updating it on subsequent items is necessary for proper screen-reader announcements.
+**Action:** Always toggle `aria-current` alongside active state classes when dealing with dynamically updated collections.
