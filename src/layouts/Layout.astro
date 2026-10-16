@@ -133,6 +133,20 @@ const { title = 'Gabriel Paiva // Operations', description = 'Archetype AI // My
           metaNum.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
         }
         if (metaTitle) metaTitle.textContent = next.title;
+
+        // ⚡ Bolt: Eagerly preload adjacent images for instant perceived navigation
+        if (images.length > 1) {
+          const nextIdx = (idx + 1) % images.length;
+          const prevIdx = (idx - 1 + images.length) % images.length;
+          new Image().src = images[nextIdx].url;
+          new Image().src = images[prevIdx].url;
+        }
+      }
+
+      // Preload initial adjacent images on mount
+      if (images.length > 1) {
+        new Image().src = images[1].url;
+        new Image().src = images[images.length - 1].url;
       }
 
       section.querySelector('.nav-arrow.prev')?.addEventListener('click', () => {
