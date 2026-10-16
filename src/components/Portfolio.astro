@@ -173,6 +173,12 @@ import { collections, getDisplayName } from '../data/collections';
     const email = String(data.get('email') || '').trim();
     const message = String(data.get('message') || '').trim();
 
+    // Security: Enforce strict length limits before processing to prevent client-side DoS
+    if (name.length > 100 || email.length > 254 || message.length > 2000) {
+      alert('Input exceeds maximum allowed length. Please shorten your message.');
+      return;
+    }
+
     const subject = encodeURIComponent(`Portfolio inquiry${name ? ` from ${name}` : ''}`);
     const body = encodeURIComponent([
       name ? `Name: ${name}` : '',
@@ -181,7 +187,15 @@ import { collections, getDisplayName } from '../data/collections';
       message,
     ].filter(Boolean).join('\n'));
 
-    window.location.href = `mailto:gabriel@theflowyway.com?subject=${subject}&body=${body}`;
+    const mailtoUrl = `mailto:gabriel@theflowyway.com?subject=${subject}&body=${body}`;
+
+    // Security: Ensure final URL length is within safe browser limits (~2000 chars)
+    if (mailtoUrl.length > 2000) {
+      alert('Message is too long to send via email client. Please shorten your message.');
+      return;
+    }
+
+    window.location.href = mailtoUrl;
   });
 </script>
 
